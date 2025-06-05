@@ -1,0 +1,531 @@
+    ```jsx
+import { useState, useEffect, useRef } from 'react';
+
+export default function App() {
+  // Datos extendidos de artistas y géneros
+  const [artists, setArtists] = useState([
+    {
+      id: 1,
+      name: "Filarmónica de Berlín",
+      country: "Alemania",
+      bio: "Una de las mejores orquestas del mundo, reconocida por su excelencia en interpretaciones clásicas desde 1882.",
+      image: "https://placehold.co/600x400/1a5276/ffffff?text=Filarmónica+de+Berlín",
+      songs: [
+        { id: 1, title: "Sinfonía No. 9", composer: "Beethoven", duration: "35:42", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+        { id: 2, title: "Sinfonía No. 40", composer: "Mozart", duration: "22:15", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+        { id: 3, title: "Bolero", composer: "Ravel", duration: "15:30", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
+        { id: 4, title: "Concierto para Piano No. 5", composer: "Beethoven", duration: "38:12", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
+        { id: 5, title: "Tchaikovsky Suite No. 3", composer: "Tchaikovsky", duration: "33:45", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" }
+      ]
+    },
+    {
+      id: 2,
+      name: "Ópera Estatal de Viena",
+      country: "Austria",
+      bio: "Orquesta de la Ópera Estatal de Viena con una rica tradición en interpretaciones operísticas y sinfónicas desde 1921.",
+      image: "https://placehold.co/600x400/2874a6/ffffff?text=Ópera+Estatal+de+Viena",
+      songs: [
+        { id: 6, title: "Obertura de La Flauta Mágica", composer: "Mozart", duration: "06:22", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
+        { id: 7, title: "Sinfonía No. 8", composer: "Mahler", duration: "42:10", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" },
+        { id: 8, title: "Tristán e Isolda", composer: "Wagner", duration: "18:45", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" },
+        { id: 9, title: "Don Juan", composer: "Strauss", duration: "17:08", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" },
+        { id: 10, title: "Carmen Suite", composer: "Bizet", duration: "22:30", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" }
+      ]
+    },
+    {
+      id: 3,
+      name: "Sinfónica de Londres",
+      country: "Reino Unido",
+      bio: "Orquesta sinfónica fundada en 1904, conocida por su versatilidad y colaboraciones con compositores contemporáneos.",
+      image: "https://placehold.co/600x400/34495e/ffffff?text=Sinfónica+de+Londres",
+      songs: [
+        { id: 11, title: "Enigma Variations", composer: "Elgar", duration: "33:15", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" },
+        { id: 12, title: "Planets Suite", composer: "Holst", duration: "49:22", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" },
+        { id: 13, title: "Concierto para Violín", composer: "Bruch", duration: "28:40", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3" },
+        { id: 14, title: "Pomp and Circumstance", composer: "Elgar", duration: "16:30", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3" },
+        { id: 15, title: "Daphnis et Chloé", composer: "Ravel", duration: "55:20", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3" }
+      ]
+    }
+  ]);
+
+  const [genres, setGenres] = useState([
+    {
+      id: 1,
+      name: "Sinfonía",
+      description: "Composiciones orquestales de gran escala típicamente en varios movimientos.",
+      artists: [1, 2, 3]
+    },
+    {
+      id: 2,
+      name: "Ópera",
+      description: "Obras dramáticas que combinan música, canto, drama y artes visuales.",
+      artists: [2]
+    },
+    {
+      id: 3,
+      name: "Concierto",
+      description: "Obras que destacan un instrumento solista frente a la orquesta.",
+      artists: [1, 3]
+    },
+    {
+      id: 4,
+      name: "Música de Cámara",
+      description: "Composiciones para pequeños conjuntos instrumentales con equilibrio entre las partes.",
+      artists: [1, 2, 3]
+    }
+  ]);
+
+  // Estados de la aplicación
+  const [currentPage, setCurrentPage] = useState('home');
+  const [selectedArtist, setSelectedArtist] = useState(null);
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [currentSong, setCurrentSong] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  // Navegación
+  const navigate = (page, artistId = null, genreId = null) => {
+    if (page === 'artist' && artistId) {
+      const artist = artists.find(a => a.id === artistId);
+      setSelectedArtist(artist);
+    }
+    
+    if (page === 'genre' && genreId) {
+      const genre = genres.find(g => g.id === genreId);
+      setSelectedGenre(genre);
+    }
+    
+    setCurrentPage(page);
+  };
+
+  // Reproducción de canciones
+  const playSong = (song) => {
+    if (currentSong && currentSong.id === song.id) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play();
+        setIsPlaying(true);
+      }
+      return;
+    }
+    
+    setCurrentSong(song);
+    setIsPlaying(true);
+  };
+
+  // Efecto para manejar el audio
+  useEffect(() => {
+    if (currentSong && audioRef.current) {
+      audioRef.current.src = currentSong.audioUrl;
+      audioRef.current.play();
+    }
+  }, [currentSong]);
+
+  // Renderizado de la página de inicio
+  const renderHome = () => (
+    <>
+      <section className="text-center py-12 bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg shadow-lg">
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Armonía Clásica</h1>
+        <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+          Descubre la belleza atemporal de la música clásica a través de nuestra colección curada de orquestas y composiciones.
+        </p>
+      </section>
+
+      <section className="grid md:grid-cols-2 gap-8 mt-8">
+        <article className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">¿Qué es la Música Clásica?</h2>
+          <p className="text-gray-600 mb-4">
+            La música clásica es aquella producida o arraigada en las tradiciones de la cultura occidental, incluyendo música religiosa y secular.
+          </p>
+          <p className="text-gray-600">
+            Caracterizada por su estructura formal, armonías complejas y profundidad emocional, abarca desde el período Barroco hasta el siglo XXI.
+          </p>
+        </article>
+
+        <article className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">Nuestra Colección</h2>
+          <ul className="space-y-2 text-gray-600">
+            <li className="flex items-center">
+              <span className="w-4 h-4 rounded-full bg-blue-500 mr-2"></span>
+              {artists.length} Orquestas de clase mundial
+            </li>
+            <li className="flex items-center">
+              <span className="w-4 h-4 rounded-full bg-blue-500 mr-2"></span>
+              {artists.reduce((total, artist) => total + artist.songs.length, 0)} Grabaciones maestras
+            </li>
+            <li className="flex items-center">
+              <span className="w-4 h-4 rounded-full bg-blue-500 mr-2"></span>
+              5+ Siglos de evolución musical
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Orquestas Destacadas</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {artists.map(artist => (
+            <article 
+              key={artist.id}
+              className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 cursor-pointer"
+              onClick={() => navigate('artist', artist.id)}
+            >
+              <img src={artist.image} alt={artist.name} className="w-full h-48 object-cover" />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold text-gray-800">{artist.name}</h3>
+                <p className="text-gray-600">{artist.country}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+
+  // Renderizado de la lista de artistas
+  const renderArtists = () => (
+    <>
+      <nav className="flex items-center space-x-2 text-gray-600 mb-6">
+        <button 
+          onClick={() => navigate('home')}
+          className="hover:text-gray-900"
+        >
+          Inicio
+        </button>
+        <span>›</span>
+        <span className="font-medium">Artistas</span>
+      </nav>
+
+      <div className="grid md:grid-cols-3 gap-6">
+        {artists.map(artist => (
+          <article 
+            key={artist.id}
+            className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:shadow-lg cursor-pointer"
+            onClick={() => navigate('artist', artist.id)}
+          >
+            <img src={artist.image} alt={artist.name} className="w-full h-48 object-cover" />
+            <div className="p-4">
+              <h3 className="text-xl font-semibold text-gray-800">{artist.name}</h3>
+              <p className="text-gray-600">{artist.country}</p>
+              <p className="text-gray-500 mt-2 text-sm line-clamp-2">{artist.bio}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </>
+  );
+
+  // Renderizado de una página de artista
+  const renderArtistPage = () => {
+    if (!selectedArtist) return null;
+    
+    return (
+      <>
+        <nav className="flex items-center space-x-2 text-gray-600 mb-6">
+          <button 
+            onClick={() => navigate('home')}
+            className="hover:text-gray-900"
+          >
+            Inicio
+          </button>
+          <span>›</span>
+          <button 
+            onClick={() => navigate('artists')}
+            className="hover:text-gray-900"
+          >
+            Artistas
+          </button>
+          <span>›</span>
+          <span className="font-medium">{selectedArtist.name}</span>
+        </nav>
+
+        <article className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img 
+            src={selectedArtist.image} 
+            alt={selectedArtist.name} 
+            className="w-full h-64 object-cover"
+          />
+          <div className="p-6">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">{selectedArtist.name}</h2>
+            <div className="flex items-center mb-4">
+              <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                {selectedArtist.country}
+              </span>
+            </div>
+            <p className="text-gray-700 mb-6">{selectedArtist.bio}</p>
+            
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4">Obras Destacadas</h3>
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">Título</th>
+                    <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">Compositor</th>
+                    <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">Duración</th>
+                    <th className="py-3 px-4 text-right text-sm font-semibold text-gray-700">Reproducir</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {selectedArtist.songs.map(song => (
+                    <tr key={song.id} className="border-b hover:bg-gray-50">
+                      <td className="py-3 px-4 text-gray-800">{song.title}</td>
+                      <td className="py-3 px-4 text-gray-600">{song.composer}</td>
+                      <td className="py-3 px-4 text-gray-600">{song.duration}</td>
+                      <td className="py-3 px-4 text-right">
+                        <button 
+                          onClick={() => playSong(song)}
+                          className="text-blue-600 hover:text-blue-800 focus:outline-none"
+                        >
+                          {currentSong && currentSong.id === song.id && isPlaying ? "⏸️ Pausar" : "▶️ Reproducir"}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+      </>
+    );
+  };
+
+  // Renderizado de la lista de géneros
+  const renderGenres = () => (
+    <>
+      <nav className="flex items-center space-x-2 text-gray-600 mb-6">
+        <button 
+          onClick={() => navigate('home')}
+          className="hover:text-gray-900"
+        >
+          Inicio
+        </button>
+        <span>›</span>
+        <span className="font-medium">Géneros</span>
+      </nav>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        {genres.map(genre => (
+          <article 
+            key={genre.id}
+            className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:shadow-lg cursor-pointer"
+            onClick={() => navigate('genre', null, genre.id)}
+          >
+            <div className="h-48 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+              <h3 className="text-3xl font-bold text-white text-center p-4">{genre.name}</h3>
+            </div>
+            <div className="p-4">
+              <p className="text-gray-600">{genre.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </>
+  );
+
+  // Renderizado de un género específico
+  const renderGenrePage = () => {
+    if (!selectedGenre) return null;
+    
+    const genreArtists = artists.filter(artist => selectedGenre.artists.includes(artist.id));
+    
+    return (
+      <>
+        <nav className="flex items-center space-x-2 text-gray-600 mb-6">
+          <button 
+            onClick={() => navigate('home')}
+            className="hover:text-gray-900"
+          >
+            Inicio
+          </button>
+          <span>›</span>
+          <button 
+            onClick={() => navigate('genres')}
+            className="hover:text-gray-900"
+          >
+            Géneros
+          </button>
+          <span>›</span>
+          <span className="font-medium">{selectedGenre.name}</span>
+        </nav>
+
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Artistas en {selectedGenre.name}</h2>
+        
+        <div className="grid md:grid-cols-3 gap-6">
+          {genreArtists.map(artist => (
+            <article 
+              key={artist.id}
+              className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:shadow-lg cursor-pointer"
+              onClick={() => navigate('artist', artist.id)}
+            >
+              <img 
+                src={artist.image} 
+                alt={artist.name} 
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold text-gray-800">{artist.name}</h3>
+                <p className="text-gray-600">{artist.country}</p>
+                <p className="text-gray-500 mt-2 text-sm line-clamp-2">{artist.bio}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </>
+    );
+  };
+
+  // Reproductor de audio
+  const AudioPlayer = () => {
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    
+    useEffect(() => {
+      const audio = audioRef.current;
+      
+      if (!audio) return;
+      
+      const updateTime = () => {
+        setCurrentTime(audio.currentTime);
+        setDuration(audio.duration);
+      };
+      
+      const updateDuration = () => {
+        setDuration(audio.duration);
+      };
+      
+      audio.addEventListener('timeupdate', updateTime);
+      audio.addEventListener('loadedmetadata', updateDuration);
+      
+      return () => {
+        audio.removeEventListener('timeupdate', updateTime);
+        audio.removeEventListener('loadedmetadata', updateDuration);
+      };
+    }, []);
+    
+    const formatTime = (time) => {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60);
+      return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    };
+
+    return currentSong ? (
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg p-4 z-50">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <button 
+              onClick={() => {
+                if (isPlaying) {
+                  audioRef.current.pause();
+                  setIsPlaying(false);
+                } else {
+                  audioRef.current.play();
+                  setIsPlaying(true);
+                }
+              }}
+              className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition"
+              aria-label={isPlaying ? "Pausar" : "Reproducir"}
+            >
+              {isPlaying ? (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8h2v4H7V8zm5 0h2v4h-2V8z" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                </svg>
+              )}
+            </button>
+            <div>
+              <p className="font-medium text-gray-800">{currentSong.title}</p>
+              <p className="text-sm text-gray-500">{currentSong.composer}</p>
+            </div>
+          </div>
+          
+          <div className="hidden md:flex items-center space-x-4">
+            <span className="text-sm text-gray-500">{formatTime(currentTime)}</span>
+            <div className="w-64 bg-gray-200 rounded-full h-2">
+              <div 
+                className="bg-blue-600 h-2 rounded-full transition-all duration-300" 
+                style={{ width: `${(currentTime / duration) * 100}%` }}
+              ></div>
+            </div>
+            <span className="text-sm text-gray-500">{formatTime(duration)}</span>
+          </div>
+          
+          <button 
+            onClick={() => {
+              audioRef.current.pause();
+              audioRef.current.currentTime = 0;
+              setCurrentSong(null);
+              setIsPlaying(false);
+            }}
+            className="text-gray-400 hover:text-gray-600"
+            aria-label="Cerrar"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        {/* Elemento de audio oculto */}
+        <audio 
+          ref={audioRef} 
+          onEnded={() => setIsPlaying(false)}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+        />
+      </div>
+    ) : null;
+  };
+
+  return (
+    <main className="min-h-screen bg-gray-50">
+      {/* Navegación */}
+      <nav className="bg-white shadow-sm">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16 items-center">
+            <div className="flex items-center space-x-8">
+              <button 
+                onClick={() => navigate('home')}
+                className="font-bold text-lg text-gray-800 hover:text-blue-600 transition"
+              >
+                Armonía Clásica
+              </button>
+              <div className="hidden md:flex space-x-6">
+                <button 
+                  onClick={() => navigate('artists')}
+                  className="text-gray-600 hover:text-blue-600 transition"
+                >
+                  Artistas
+                </button>
+                <button 
+                  onClick={() => navigate('genres')}
+                  className="text-gray-600 hover:text-blue-600 transition"
+                >
+                  Géneros
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenido principal */}
+      <section className="max-w-6xl mx-auto px-4 py-8">
+        {currentPage === 'home' && renderHome()}
+        {currentPage === 'artists' && renderArtists()}
+        {currentPage === 'artist' && renderArtistPage()}
+        {currentPage === 'genres' && renderGenres()}
+        {currentPage === 'genre' && renderGenrePage()}
+      </section>
+
+      {/* Reproductor de audio */}
+      <AudioPlayer />
+    </main>
+  );
+}
+```

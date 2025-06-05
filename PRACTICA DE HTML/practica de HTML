@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="EJERCICIO HTML-SALUDOS">
+        <title> Errores ya corregidos en teoria </title>
+    </head>
+    <body>
+        <h1>APRENDER HTML ES DIVERTIDO ME DIO MIGRAÑA</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae quam optio nesciunt atque iure animi dicta velit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae quam optio nesciunt atque iure animi dicta velit.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae quam optio nesciunt atque iure animi dicta velit.</p>
+    </body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulador de Prueba POMA</title>
+  <title>Simulador de conocimientos previos</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -35,8 +35,8 @@
       margin: 0.5rem 0;
       padding: 0.7rem;
       width: 100%;
-      background-color: #4CAF50;
-      color: white;
+      background-color: #af784c;
+      color: rgb(20, 20, 20);
       border: none;
       border-radius: 4px;
       cursor: pointer;
@@ -97,7 +97,33 @@
       { question: "¿Cuándo se firmó la primera constitución de la República Dominicana?", answers: ["1844", "1821", "1854"], correct: 0 },
       { question: "¿En qué conflicto internacional participó la República Dominicana en 1916?", answers: ["La Primera Guerra Mundial", "La Guerra Civil Dominicana", "La intervención estadounidense"], correct: 2 },
       { question: "¿Qué evento ocurrió el 27 de febrero de 1844?", answers: ["Independencia Dominicana", "Batalla del 30 de marzo", "La Guerra de la Restauración"], correct: 0 },
-      // Agrega más preguntas de Matemáticas y Lógica aquí...
+       // Preguntas de Matemáticas (20)
+      { question: "¿Cuánto es 12 × 8?", answers: ["96", "100", "88"], correct: 0 },
+      { question: "¿Cuál es el resultado de 50 ÷ 5?", answers: ["10", "12", "15"], correct: 0 },
+      { question: "Si tienes 15 manzanas y das 3 a tu amigo, ¿cuántas te quedan?", answers: ["12", "10", "11"], correct: 0 },
+      { question: "¿Cuánto es 9²?", answers: ["81", "72", "90"], correct: 0 },
+      { question: "¿Cuántos lados tiene un hexágono?", answers: ["6", "8", "4"], correct: 0 },
+      { question: "¿Cuánto es 15 × 6?", answers: ["90", "80", "100"], correct: 0 },
+      { question: "Si tienes 5 manzanas y compras 10 más, ¿cuántas manzanas tienes en total?", answers: ["15", "20", "10"], correct: 0 },
+      { question: "¿Cuánto es 144 ÷ 12?", answers: ["12", "10", "14"], correct: 0 },
+      { question: "Si el perímetro de un cuadrado es 40 cm, ¿cuál es la longitud de un lado?", answers: ["10 cm", "12 cm", "8 cm"], correct: 0 },
+      { question: "¿Cuál es el área de un triángulo con base 8 cm y altura 6 cm?", answers: ["24 cm²", "30 cm²", "28 cm²"], correct: 0 },
+      { question: "¿Cuánto es 25 × 4?", answers: ["100", "110", "120"], correct: 0 },
+      { question: "¿Cuál es el valor de π (pi) aproximado?", answers: ["3.14", "3.15", "3.1416"], correct: 0 },
+      { question: "¿Cuántos grados tiene un círculo completo?", answers: ["360 grados", "180 grados", "90 grados"], correct: 0 },
+      { question: "¿Cuál es el valor de 7³?", answers: ["343", "49", "28"], correct: 0 },
+      { question: "Si un rectángulo tiene una base de 5 cm y una altura de 10 cm, ¿cuál es su área?", answers: ["50 cm²", "100 cm²", "60 cm²"], correct: 0 },
+       // Preguntas de Lógica (20)
+      { question: "Si todos los A son B y algunos B son C, ¿todos los A son C?", answers: ["Sí", "No", "No necesariamente"], correct: 2 },
+      { question: "Si A es mayor que B y C es menor que A, ¿quién es el mayor?", answers: ["A", "B", "C"], correct: 0 },
+      { question: "Si tengo 3 manzanas, doy 1 a mi amigo y luego me regalan 2, ¿cuántas manzanas tengo?", answers: ["4", "5", "6"], correct: 1 },
+      { question: "Si un reloj marca las 6:00, ¿cuántos grados hay entre las manecillas?", answers: ["180 grados", "90 grados", "120 grados"], correct: 0 },
+      { question: "Si 8 personas se dividen igualmente 64 manzanas, ¿cuántas manzanas recibe cada persona?", answers: ["8", "7", "10"], correct: 0 },
+      { question: "En un grupo de 20 estudiantes, si 12 son hombres y 8 son mujeres, ¿cuál es la probabilidad de seleccionar una mujer?", answers: ["8/20", "1/2", "12/20"], correct: 0 },
+      { question: "Si un coche viaja a 100 km/h durante 3 horas, ¿cuántos kilómetros ha recorrido?", answers: ["300 km", "250 km", "200 km"], correct: 0 },
+      { question: "Si la secuencia es 3, 6, 9, 12, ¿cuál es el siguiente número?", answers: ["15", "16", "14"], correct: 0 },
+      { question: "Si un cuadrado tiene una diagonal de 10 cm, ¿cuál es el lado del cuadrado?", answers: ["7.07 cm", "5 cm", "8 cm"], correct: 0 },
+      { question: "Si la secuencia es 1, 4, 9, 16, ¿cuál es el siguiente número?", answers: ["25", "20", "24"], correct: 0 }
     ];
 
     let currentQuestionIndex = 0;
