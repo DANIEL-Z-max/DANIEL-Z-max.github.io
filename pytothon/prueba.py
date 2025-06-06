@@ -1,0 +1,7 @@
+#EJEMPLO DE CALCULO DE PROMEDIO DE LAS CALIFICACIONES DE "X" ESTUDIANTES.
+A=70
+B=78
+C=90
+D=45
+promedio=(A+B+C+D)/4
+print("promedio es igual a")
