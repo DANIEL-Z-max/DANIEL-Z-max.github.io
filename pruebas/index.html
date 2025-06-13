@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lil Peep - El Rey del Emo Rap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a1a1a, #333333);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 3px solid #ff9900;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff9900;
+            text-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            color: #cccccc;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        nav {
+            background-color: #1a1a1a;
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+        }
+        
+        nav a {
+            color: #ff9900;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #ff9900;
+            color: #121212;
+        }
+        
+        .hero {
+            position: relative;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            text-align: center;
+            padding: 30px;
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #ff9900;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #ffffff;
+        }
+        
+        .section {
+            margin: 50px 0;
+            padding: 30px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section h2 {
+            color: #ff9900;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+            text-align: center;
+        }
+        
+        .bio-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .bio-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .bio-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .bio-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .discography {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .album {
+            background-color: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .album:hover {
+            transform: translateY(-10px);
+        }
+        
+        .album img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .album-info {
+            padding: 20px;
+        }
+        
+        .album h3 {
+            color: #ff9900;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        
+        .videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .video {
+            background-color: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video h3 {
+            color: #ff9900;
+            margin-top: 0;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            height: 250px;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .tribute {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #1a1a1a, #000);
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        
+        .tribute h2 {
+            color: #ff9900;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .tribute p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        footer {
+            background-color: #1a1a1a;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 3px solid #ff9900;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #ff9900;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #ffffff;
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .videos {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">LIL PEEP</div>
+            <div class="subtitle">1996 - 2017 • El Rey del Emo Rap</div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <a href="#biografia">Biografía</a>
+            <a href="#discografia">Discografía</a>
+            <a href="#videos">Videos</a>
+            <a href="#galeria">Galería</a>
+            <a href="#tributo">Tributo</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Gustav Elijah Åhr</h1>
+                <p>"Cuando muera, quiero que la gente recuerde mi nombre"</p>
+            </div>
+        </div>
+        
+        <section id="biografia" class="section">
+            <h2>Biografía</h2>
+            <div class="bio-content">
+                <div class="bio-image">
+                    <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Lil Peep">
+                </div>
+                <div class="bio-text">
+                    <p><strong>Gustav Elijah Åhr</strong>, conocido artísticamente como <b>Lil Peep</b>, fue un rapero, cantante, compositor y modelo estadounidense. Nació el 1 de noviembre de 1996 en Pensilvania y falleció el 15 de noviembre de 2017 en Tucson, Arizona.</p>
+                    
+                    <p>Considerado una figura pionera en el desarrollo del <em>emo rap</em> y el género <i>SoundCloud rap</i>, Lil Peep fusionó elementos del hip hop, rock, punk y trap en su música. Su estilo único, caracterizado por letras crudas y personales sobre sus luchas con la depresión, la adicción y las relaciones, resonó con millones de jóvenes en todo el mundo.</p>
+                    
+                    <p>Comenzó a publicar música en SoundCloud en 2015, ganando reconocimiento con mixtapes como <i>Lil Peep; Part One</i>, <i>Live Forever</i>, <i>Crybaby</i> y <i>Hellboy</i>. Su álbum debut <strong>Come Over When You're Sober, Pt. 1</strong> fue lanzado en 2017, seguido póstumamente por <strong>Come Over When You're Sober, Pt. 2</strong> en 2018.</p>
+                    
+                    <blockquote>
+                        "Mi música es para todos los que se sienten solos, para los que se sienten incomprendidos. Quiero que sepan que no están solos."
+                    </blockquote>
+                    
+                    <p>Lil Peep se convirtió en un icono de la generación por su autenticidad, su estilo andrógino y sus tatuajes faciales. Aunque su carrera fue trágicamente corta, su legado perdura en la música y la cultura contemporánea.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="discografia" class="section">
+            <h2>Discografía</h2>
+            <div class="discography">
+                <div class="album">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Come Over When You're Sober, Pt. 1">
+                    <div class="album-info">
+                        <h3>Come Over When You're Sober, Pt. 1 (2017)</h3>
+                        <p><strong>Éxitos:</strong> Benz Truck, Awful Things, Save That Shit</p>
+                        <p>Álbum debut que fusiona rap, rock y elementos emo. Producido por Smokeasac e IIVI.</p>
+                    </div>
+                </div>
+                
+                <div class="album">
+                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Come Over When You're Sober, Pt. 2">
+                    <div class="album-info">
+                        <h3>Come Over When You're Sober, Pt. 2 (2018)</h3>
+                        <p><strong>Éxitos:</strong> Cry Alone, Runaway, Life Is Beautiful</p>
+                        <p>Álbum póstumo que completa la visión de Lil Peep. Incluye colaboraciones con XXXTentacion y Ty Dolla Sign.</p>
+                    </div>
+                </div>
+                
+                <div class="album">
+                    <img src="https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Everybody's Everything">
+                    <div class="album-info">
+                        <h3>Everybody's Everything (2019)</h3>
+                        <p><strong>Éxitos:</strong> Falling Down, I've Been Waiting</p>
+                        <p>Compilación póstuma que incluye material inédito y colaboraciones. Lanzado junto al documental del mismo nombre.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="color: #ff9900; margin-top: 40px;">Mixtapes Destacadas</h3>
+            <ul>
+                <li><strong>Lil Peep; Part One</strong> (2015)</li>
+                <li><strong>Live Forever</strong> (2015)</li>
+                <li><strong>Crybaby</strong> (2016)</li>
+                <li><strong>Hellboy</strong> (2016)</li>
+                <li><strong>Castles</strong> (con Lil Tracy, 2017)</li>
+            </ul>
+        </section>
+        
+        <section id="videos" class="section">
+            <h2>Videos Musicales</h2>
+            <div class="videos">
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/Z1iWxVdSJ1o" title="Benz Truck" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Benz Truck</h3>
+                        <p>Primer sencillo de "Come Over When You're Sober, Pt. 1" con más de 200 millones de visualizaciones.</p>
+                    </div>
+                </div>
+                
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/Q7dC6lUOoQ4" title="Awful Things" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Awful Things (ft. Lil Tracy)</h3>
+                        <p>Segundo sencillo del álbum debut con una estética visual única que define el estilo de Peep.</p>
+                    </div>
+                </div>
+                
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/8dM5QYdTo08" title="Save That Shit" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Save That Shit</h3>
+                        <p>Impactante video con imágenes surrealistas que reflejan el mundo interior del artista.</p>
+                    </div>
+                </div>
+                
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/7pzwN5uNwFQ" title="Star Shopping" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h3>Star Shopping</h3>
+                        <p>Uno de los temas más queridos por los fans, con letras profundamente personales.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="galeria" class="section">
+            <h2>Galería</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Lil Peep 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1477233534935-f5e6fe7c1159?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Lil Peep 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Lil Peep 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Lil Peep 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Lil Peep 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Lil Peep 6">
+                </div>
+            </div>
+        </section>
+        
+        <section id="tributo" class="tribute">
+            <h2>Un Legado Eterno</h2>
+            <p>Lil Peep dejó este mundo demasiado pronto, pero su música, su estilo único y su autenticidad continúan inspirando a millones. Su habilidad para expresar vulnerabilidad y emociones crudas a través de su arte rompió barreras en la industria musical y abrió el camino para una nueva generación de artistas.</p>
+            <p>Aunque su vida fue breve, su impacto en la cultura contemporánea es innegable. Lil Peep será recordado como un visionario que desafió los géneros y las expectativas, creando un espacio donde el rap, el rock y las emociones humanas se fusionaron en algo completamente nuevo.</p>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="logo">LIL PEEP</div>
+            <p>1996 - 2017 • Siempre en nuestra memoria</p>
+            
+            <div class="social-links">
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="YouTube">▶️</a>
+                <a href="#" title="Spotify">🎵</a>
+                <a href="#" title="Apple Music">🎶</a>
+            </div>
+            
+            <p>Sitio creado por fans • Todos los derechos reservados a los propietarios del material</p>
+        </div>
+    </footer>
+</body>
+</html>

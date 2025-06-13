@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lil Peep - Página Oficial</title>
+    <style>
+        :root {
+            --bg-color: #000;
+            --text-color: #fff;
+            --accent-color: #ffcc00;
+            --link-hover: #e6b800;
+        }
+
+        body.light-mode {
+            --bg-color: #fff;
+            --text-color: #000;
+            --accent-color: #cc00ff;
+            --link-hover: #ff66ff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--link-hover);
+        }
+
+        header nav {
+            background-color: #1a1a1a;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header nav a {
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        h1, h2, h3 {
+            color: var(--accent-color);
+            text-align: center;
+        }
+
+        section {
+            padding: 30px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        img {
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 20px;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        hr {
+            border: 1px solid var(--accent-color);
+            margin: 40px auto;
+            width: 80%;
+        }
+
+        form input[type="text"],
+        form input[type="email"] {
+            padding: 8px;
+            width: 250px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        form input[type="submit"] {
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: var(--link-hover);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+            padding: 30px 10px;
+        }
+
+        .back-to-top {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .theme-toggle {
+            display: block;
+            margin: 20px auto;
+            padding: 8px 16px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    console.log(`Navegando a ${link.textContent}`);
+                });
+            });
+
+            document.getElementById('themeToggle').addEventListener('click', function () {
+                document.body.classList.toggle('light-mode');
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#biografia">Biografía</a>
+            <a href="#discografia">Discografía</a>
+            <a href="#videos">Videos</a>
+            <a href="#fotos">Galería</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <button id="themeToggle" class="theme-toggle">Cambiar tema</button>
+
+    <section id="inicio">
+        <h1>Lil Peep - Página oficial</h1>
+        <p style="text-align:center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Lil_Peep_2017.jpg" alt="Lil Peep">
+        </p>
+        <blockquote>
+            <h2><em>"Cuando muera, quiero que la gente recuerde mi nombre."</em></h2>
+        </blockquote>
+    </section>
+
+    <hr>
+
+    <section id="biografia">
+        <h2>Biografía</h2>
+        <p style="text-align:center;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Lil_Peep_2017.jpg/440px-Lil_Peep_2017.jpg" alt="Lil Peep Biografía">
+        </p>
+        <p><strong>Gustav Elijah Åhr</strong> (1996-2017), conocido como <strong>Lil Peep</strong>, fue un pionero del emo-rap. Nació en Pensilvania y creció en Nueva York. Ganó popularidad en SoundCloud y abordó temas de depresión, amor y lucha personal.</p>
+        <h3>Carrera Musical</h3>
+        <p>Desde su primer mixtape en 2015, Peep combinó estilos como:</p>
+        <ul>
+            <li>Hip Hop</li>
+            <li>Emo</li>
+            <li>Rock alternativo</li>
+            <li>Pop punk</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section id="discografia">
+        <h2>Discografía</h2>
+        <h3>Álbumes de Estudio</h3>
+        <p><strong>Come Over When You're Sober, Pt. 1</strong> (2017)<br> Éxitos: Benz Truck, Awful Things, Save That Shit</p>
+        <p><strong>Come Over When You're Sober, Pt. 2</strong> (2018)<br> Éxitos: Cry Alone, Runaway, Life Is Beautiful</p>
+
+        <h3>Mixtapes</h3>
+        <p>Lil Peep; Part One, Live Forever, Crybaby, Hellboy</p>
+    </section>
+
+    <hr>
+
+    <section id="videos">
+        <h2>Videos Musicales</h2>
+        <table>
+            <tr>
+                <td>
+                    <h3>Benz Truck</h3>
+                    <img src="https://img.youtube.com/vi/3a0TnFZrFAY/0.jpg" alt="Benz Truck">
+                    <br><a href="https://www.youtube.com/watch?v=3a0TnFZrFAY" target="_blank">Ver video</a>
+                </td>
+                <td>
+                    <h3>Awful Things</h3>
+                    <img src="https://img.youtube.com/vi/WEBcQjpp__A/0.jpg" alt="Awful Things">
+                    <br><a href="https://www.youtube.com/watch?v=WEBcQjpp__A" target="_blank">Ver video</a>
+                </td>
+                <td>
+                    <h3>Save That Shit</h3>
+                    <img src="https://img.youtube.com/vi/etfIdtm-OC8/0.jpg" alt="Save That Shit">
+                    <br><a href="https://www.youtube.com/watch?v=etfIdtm-OC8" target="_blank">Ver video</a>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <hr>
+
+    <section id="fotos">
+        <h2>Galería de Fotos</h2>
+        <table>
+            <tr>
+                <td><img src="https://i.scdn.co/image/ab6761610000e5eb289c0adfe3513d1470282d52" alt="Lil Peep 1"></td>
+                <td><img src="https://i.pinimg.com/originals/8e/56/5b/8e565b5b146ea99438d15e9a7db1c57d.jpg" alt="Lil Peep 2"></td>
+                <td><img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Lil_Peep_at_The_Echo.jpg" alt="Lil Peep 3"></td>
+                <td><img src="https://www.rollingstone.com/wp-content/uploads/2018/06/rs-lilpeep-c6f32ed1-75a3-4f69-9ae2-b91b563fe80c.jpg" alt="Lil Peep 4"></td>
+            </tr>
+        </table>
+    </section>
+
+    <hr>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p style="text-align: center;">Para más información sobre Lil Peep:</p>
+        <p style="text-align: center;">
+            Sitio oficial: <a href="https://lilpeep.com">lilpeep.com</a><br>
+            Instagram: <a href="https://instagram.com/lilpeep">@lilpeep</a><br>
+            Twitter: <a href="https://twitter.com/lilpeep">@lilpeep</a>
+        </p>
+
+        <h3 style="text-align: center;">Suscríbete al newsletter</h3>
+        <form action="#" method="post" style="text-align: center;">
+            <input type="text" name="name" placeholder="Nombre"><br><br>
+            <input type="email" name="email" placeholder="Correo electrónico"><br><br>
+            <input type="submit" value="Suscribirse">
+        </form>
+    </section>
+
+    <footer>
+        <p>Sitio no oficial creado con fines educativos.<br>Imágenes reales con fines ilustrativos.<br><a class="back-to-top" href="#inicio">Volver arriba</a></p>
+    </footer>
+</body>
+</html>

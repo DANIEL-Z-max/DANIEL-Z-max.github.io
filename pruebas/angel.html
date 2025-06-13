@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lil Peep - Página Oficial</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #ff9900;
+        }
+
+        .navbar {
+            background-color: #333;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        .navbar td {
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .navbar a {
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background-color: #444;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header-image {
+            width: 100%;
+            height: 400px;
+            background: url('https://via.placeholder.com/1200x400')  no-repeat center center;
+            background-size: cover;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .biography-image {
+            float: left;
+            margin: 0 20px 20px 0;
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .section-title {
+            color: #ffcc00;
+            border-bottom: 2px solid #ffcc00;
+            padding: 10px 0;
+        }
+
+        .discography-item {
+            background: #1a1a1a;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .video-gallery {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .video-item {
+            background: #2d2d2d;
+            padding: 15px;
+            border-radius: 5px;
+            width: 30%;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .photo-item {
+            background: #2d2d2d;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .contact-form {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #333;
+            color: #fff;
+        }
+
+        input[type="submit"] {
+            background: #ffcc00;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background: #ff9900;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #444;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <table class="navbar">
+        <tr align="center">
+            <td><a href="#inicio">Inicio</a></td>
+            <td><a href="#biografia">Biografía</a></td>
+            <td><a href="#discografia">Discografía</a></td>
+            <td><a href="#videos">Videos</a></td>
+            <td><a href="#fotos">Fotos</a></td>
+            <td><a href="#contacto">Contacto</a></td>
+        </tr>
+    </table>
+
+    <!-- Portada -->
+    <div class="header-image"></div>
+    <div class="container">
+        <blockquote class="section-title">
+            <h2>"Cuando muera, quiero que la gente recuerde mi nombre."</h2>
+        </blockquote>
+
+        <!-- Biografía -->
+        <section id="biografia">
+            <h2 class="section-title">Biografía</h2>
+            <img src="https://via.placeholder.com/300x300"  class="biography-image">
+            <p><strong>Gustav Elijah Åhr</strong> (1 de noviembre de 1996 - 15 de noviembre de 2017), conocido como <strong>Lil Peep</strong>, fue un innovador del emo-rap...</p>
+            <!-- ... resto del contenido ... -->
+        </section>
+
+        <!-- Discografía -->
+        <section id="discografia">
+            <h2 class="section-title">Discografía</h2>
+            <div class="discography-item">
+                <h3>Come Over When You're Sober, Pt. 1</h3>
+                <p>Éxitos: Benz Truck, Awful Things, Save That Shit</p>
+            </div>
+            <!-- ... más discografía ... -->
+        </section>
+
+        <!-- Videos -->
+        <section id="videos">
+            <h2 class="section-title">Videos Musicales</h2>
+            <div class="video-gallery">
+                <div class="video-item">
+                    <h3>Benz Truck</h3>
+                    <img src="https://via.placeholder.com/300x200"  width="100%">
+                    <a href="#">Ver video</a>
+                </div>
+                <!-- ... más videos ... -->
+            </div>
+        </section>
+
+        <!-- Fotos -->
+        <section id="fotos">
+            <h2 class="section-title">Galería de Fotos</h2>
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <img src="https://via.placeholder.com/200x200"  width="100%">
+                </div>
+                <!-- ... más fotos ... -->
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contacto">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-form">
+                <form id="newsletterForm">
+                    <input type="text" placeholder="Nombre" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="submit" value="Suscribirse">
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Pie de Página -->
+    <div class="footer">
+        <small>Sitio no oficial creado con fines educativos</small>
+        <p><a href="#inicio">Volver arriba</a></p>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="modal" class="modal">
+        <h3>¡Gracias por suscribirte!</h3>
+        <p>Pronto recibirás noticias sobre Lil Peep.</p>
+        <button onclick="closeModal()">Cerrar</button>
+    </div>
+
+    <script>
+        // Formulario con validación
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('modal').style.display = 'block';
+        });
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Smooth scroll para anclas
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
