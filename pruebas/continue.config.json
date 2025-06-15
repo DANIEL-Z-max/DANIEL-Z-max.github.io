@@ -1,0 +1,11 @@
+{
+  "models": [
+    {
+      "title": "LM Studio",
+      "provider": "openai",
+      "apiBase": "http://127.0.0.1:1234",
+      "apiKey": "no-key",
+      "model": "local-model"
+    }
+  ]
+}
