@@ -1,0 +1,2011 @@
+<!DOCTYPE html><html lang="es"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Marca Personal Poderosa en LinkedIn para Freelancers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-charcoal': '#2C3E50',
+                        'brand-gold': '#D4AF37',
+                        'brand-light-gold': '#E8C547',
+                        'brand-sage': '#7F8C8D',
+                        'brand-amber': '#F39C12',
+                        'brand-cream': '#FEF9E7',
+                        'brand-ink': '#1A252F'
+                    },
+                    fontFamily: {
+                        'serif': ['Crimson Text', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .cinematic-overlay {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(26, 37, 47, 0.7) 100%);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 1.5rem;
+            height: 60vh;
+        }
+        .bento-main {
+            grid-row: 1 / 3;
+            background: linear-gradient(135deg, #2C3E50 0%, #1A252F 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-side-1 {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .bento-side-2 {
+            background: rgba(127, 140, 141, 0.1);
+            border: 1px solid rgba(127, 140, 141, 0.3);
+        }
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                height: auto;
+            }
+            .bento-main {
+                grid-row: 1;
+            }
+        }
+        .toc-fixed {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 280px;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .content-with-toc {
+            margin-left: 320px;
+            padding: 2rem;
+        }
+        @media (max-width: 1280px) {
+            .toc-fixed {
+                display: none;
+            }
+            .content-with-toc {
+                margin-left: 0;
+            }
+        }
+        .module-section {
+            scroll-margin-top: 2rem;
+        }
+        .quote-highlight {
+            border-left: 4px solid #D4AF37;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+        }
+        .citation-link {
+            color: #D4AF37;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #D4AF37;
+        }
+        .citation-link:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+    </style>
+  </head>
+
+  <body class="bg-white font-sans text-brand-charcoal">
+    <!-- Table of Contents -->
+    <nav class="toc-fixed">
+      <h3 class="font-serif text-lg font-semibold text-brand-charcoal mb-4 border-b border-brand-gold/20 pb-2">
+        <i class="fas fa-list-ul text-brand-gold mr-2"></i>Contenido
+      </h3>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a href="#hero" class="block py-1 px-2 rounded hover:bg-brand-gold/10 transition-colors">Introducción</a>
+        </li>
+        <li>
+          <a href="#module1" class="block py-1 px-2 rounded hover:bg-brand-gold/10 transition-colors">Módulo 1: Fundamentos</a>
+          <ul class="ml-3 mt-1 space-y-1 text-xs text-brand-sage">
+            <li>
+              <a href="#module1-1" class="block py-1 hover:text-brand-gold transition-colors">Marca Personal Digital</a>
+            </li>
+            <li>
+              <a href="#module1-2" class="block py-1 hover:text-brand-gold transition-colors">LinkedIn para Freelancers</a>
+            </li>
+            <li>
+              <a href="#module1-3" class="block py-1 hover:text-brand-gold transition-colors">Objetivos y Público</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#module2" class="block py-1 px-2 rounded hover:bg-brand-gold/10 transition-colors">Módulo 2: Perfil</a>
+          <ul class="ml-3 mt-1 space-y-1 text-xs text-brand-sage">
+            <li>
+              <a href="#module2-1" class="block py-1 hover:text-brand-gold transition-colors">Perfil Destacado</a>
+            </li>
+            <li>
+              <a href="#module2-2" class="block py-1 hover:text-brand-gold transition-colors">Titular y Resumen</a>
+            </li>
+            <li>
+              <a href="#module2-3" class="block py-1 hover:text-brand-gold transition-colors">Palabras Clave</a>
+            </li>
+            <li>
+              <a href="#module2-4" class="block py-1 hover:text-brand-gold transition-colors">Experiencia y Logros</a>
+            </li>
+            <li>
+              <a href="#module2-5" class="block py-1 hover:text-brand-gold transition-colors">Recomendaciones</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#module3" class="block py-1 px-2 rounded hover:bg-brand-gold/10 transition-colors">Módulo 3: Contenido</a>
+          <ul class="ml-3 mt-1 space-y-1 text-xs text-brand-sage">
+            <li>
+              <a href="#module3-1" class="block py-1 hover:text-brand-gold transition-colors">Estrategia de Contenido</a>
+            </li>
+            <li>
+              <a href="#module3-2" class="block py-1 hover:text-brand-gold transition-colors">Publicaciones de Impacto</a>
+            </li>
+            <li>
+              <a href="#module3-3" class="block py-1 hover:text-brand-gold transition-colors">Networking Efectivo</a>
+            </li>
+            <li>
+              <a href="#module3-4" class="block py-1 hover:text-brand-gold transition-colors">Participación en Grupos</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#module4" class="block py-1 px-2 rounded hover:bg-brand-gold/10 transition-colors">Módulo 4: Autoridad</a>
+          <ul class="ml-3 mt-1 space-y-1 text-xs text-brand-sage">
+            <li>
+              <a href="#module4-1" class="block py-1 hover:text-brand-gold transition-colors">Artículos Largos</a>
+            </li>
+            <li>
+              <a href="#module4-2" class="block py-1 hover:text-brand-gold transition-colors">LinkedIn Pulse</a>
+            </li>
+            <li>
+              <a href="#module4-3" class="block py-1 hover:text-brand-gold transition-colors">Aumentar Interacción</a>
+            </li>
+            <li>
+              <a href="#module4-4" class="block py-1 hover:text-brand-gold transition-colors">Colaboraciones</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#module5" class="block py-1 px-2 rounded hover:bg-brand-gold/10 transition-colors">Módulo 5: Conversión</a>
+          <ul class="ml-3 mt-1 space-y-1 text-xs text-brand-sage">
+            <li>
+              <a href="#module5-1" class="block py-1 hover:text-brand-gold transition-colors">Conexiones a Clientes</a>
+            </li>
+            <li>
+              <a href="#module5-2" class="block py-1 hover:text-brand-gold transition-colors">Mensajes Directos</a>
+            </li>
+            <li>
+              <a href="#module5-3" class="block py-1 hover:text-brand-gold transition-colors">Prospección</a>
+            </li>
+            <li>
+              <a href="#module5-4" class="block py-1 hover:text-brand-gold transition-colors">Integración Plataformas</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#module6" class="block py-1 px-2 rounded hover:bg-brand-gold/10 transition-colors">Módulo 6: Mantenimiento</a>
+          <ul class="ml-3 mt-1 space-y-1 text-xs text-brand-sage">
+            <li>
+              <a href="#module6-1" class="block py-1 hover:text-brand-gold transition-colors">Reputación Online</a>
+            </li>
+            <li>
+              <a href="#module6-2" class="block py-1 hover:text-brand-gold transition-colors">Análisis de Métricas</a>
+            </li>
+            <li>
+              <a href="#module6-3" class="block py-1 hover:text-brand-gold transition-colors">Actualización Continua</a>
+            </li>
+            <li>
+              <a href="#module6-4" class="block py-1 hover:text-brand-gold transition-colors">Tendencias Futuras</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-with-toc">
+      <!-- Hero Section -->
+      <section id="hero" class="mb-16">
+        <div class="bento-grid">
+          <!-- Main Hero Panel -->
+          <div class="bento-main rounded-2xl p-8 flex flex-col justify-center relative">
+            <div class="cinematic-overlay absolute inset-0 rounded-2xl"></div>
+            <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片13.png" alt="Freelancer trabajando en portátil con fondo profesional" class="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-30" size="wallpaper" aspect="wide" style="photo" query="freelancer profesional portátil" referrerpolicy="no-referrer"/>
+            <div class="relative z-10">
+              <h1 class="font-serif text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                <span class="italic">Marca Personal</span>
+                <br/>
+                <span class="text-brand-light-gold">Poderosa en LinkedIn</span>
+                <br/>
+                <span class="text-xl md:text-2xl font-normal">para Freelancers</span>
+              </h1>
+              <p class="text-brand-cream/90 text-lg max-w-2xl leading-relaxed">
+                Transforma tu presencia digital y conviértete en un profesional altamente cotizado mediante estrategias comprobadas de branding personal en la plataforma profesional más influyente del mundo.
+              </p>
+            </div>
+          </div>
+
+          <!-- Side Panel 1 -->
+          <div class="bento-side-1 rounded-2xl p-6 flex flex-col justify-center">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-brand-gold mb-2">6</div>
+              <div class="text-sm text-brand-charcoal/80">Módulos completos</div>
+              <div class="text-xs text-brand-sage mt-1">De fundamentos a expertos</div>
+            </div>
+          </div>
+
+          <!-- Side Panel 2 -->
+          <div class="bento-side-2 rounded-2xl p-6 flex flex-col justify-center">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-brand-amber mb-2">24</div>
+              <div class="text-sm text-brand-charcoal/80">Lecciones prácticas</div>
+              <div class="text-xs text-brand-sage mt-1">Estrategias comprobadas</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction -->
+      <section class="mb-16">
+        <div class="max-w-4xl mx-auto">
+          <div class="quote-highlight p-8 rounded-xl mb-8">
+            <blockquote class="font-serif text-2xl text-brand-charcoal italic leading-relaxed">
+              &#34;La marca personal es el eco de tus valores y visión, resonando mucho después de haber salido de una habitación. No es solo para CEOs y fundadores, sino para cualquiera que haga negocios o busque trabajo.&#34;
+            </blockquote>
+            <cite class="block mt-4 text-brand-gold font-medium">— Fundamentos de la Marca Personal Digital</cite>
+          </div>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-lg leading-relaxed text-brand-charcoal/80 mb-6">
+              En el competitivo mercado freelance actual, tu marca personal se ha convertido en tu activo más valioso. Este curso integral te guiará a través de un viaje estratégico para construir una presencia poderosa en LinkedIn que no solo te diferencie de la competencia, sino que también atraiga clientes de alto valor de manera consistente.
+            </p>
+
+            <p class="text-lg leading-relaxed text-brand-charcoal/80">
+              Desde la optimización básica de tu perfil hasta estrategias avanzadas de generación de leads, cada módulo está diseñado para proporcionarte herramientas prácticas, insights accionables y técnicas comprobadas que transformarán tu enfoque de networking profesional.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Module 1: Fundamentals -->
+      <section id="module1" class="module-section mb-16">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-bold text-brand-charcoal mb-4">Módulo 1: Fundamentos</h2>
+            <div class="w-24 h-1 bg-brand-gold mx-auto mb-4"></div>
+            <p class="text-xl text-brand-sage max-w-3xl mx-auto">Construyendo los cimientos de tu marca personal</p>
+          </div>
+
+          <!-- Section 1.1 -->
+          <div id="module1-1" class="module-section mb-12">
+            <div class="bg-brand-cream/30 rounded-xl p-8 mb-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-rocket text-brand-gold mr-3"></i>
+                1.1 Introducción a la Marca Personal Digital
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">¿Qué es la Marca Personal?</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    La marca personal en la era digital es una <strong>expresión cultivada y formalizada del yo profesional hacia el exterior</strong>
+                    <a href="https://www.shopify.com/blog/personal-brand" class="citation-link" target="_blank">[41]</a>.
+                    No se trata simplemente de un currículum o biografía, sino de un código por el cual vives al interactuar con el mundo.
+                  </p>
+
+                  <div class="bg-white p-4 rounded-lg border-l-4 border-brand-gold mb-4">
+                    <p class="text-sm text-brand-charcoal/70 italic">
+                      &#34;Para los freelancers, pensar en sí mismos no como &#39;pistoleros a sueldo&#39; sino como un negocio unipersonal es crucial. Como cualquier otra empresa, necesitan un nombre, un nicho, una personalidad y un lenguaje que los distinga.&#34;
+                      <a href="https://www.freelancermap.com/blog/personal-brand-freelance-online-presence/" class="citation-link" target="_blank">[51]</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Elementos Clave</h4>
+                  <ul class="space-y-3 text-brand-charcoal/80">
+                    <li class="flex items-start">
+                      <i class="fas fa-check-circle text-brand-gold mr-2 mt-1"></i>
+                      <span><strong>Propósito:</strong> Conectar con otros, resonando especialmente con tu público objetivo</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check-circle text-brand-gold mr-2 mt-1"></i>
+                      <span><strong>Autenticidad:</strong> Combustible clave para marcas personales efectivas</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check-circle text-brand-gold mr-2 mt-1"></i>
+                      <span><strong>Estrategia:</strong> Práctica intencional de definir y expresar tu valor</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check-circle text-brand-gold mr-2 mt-1"></i>
+                      <span><strong>Resultados:</strong> Aumento en tasas de conversión y clientes que pagan mejor</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 1.2 -->
+          <div id="module1-2" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fab fa-linkedin text-brand-gold mr-3"></i>
+                1.2 LinkedIn: Plataforma Esencial para Freelancers
+              </h3>
+
+              <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center p-6 bg-brand-cream/20 rounded-lg">
+                  <i class="fas fa-network-wired text-3xl text-brand-gold mb-4"></i>
+                  <h4 class="font-semibold text-brand-charcoal mb-2">Networking Profesional</h4>
+                  <p class="text-sm text-brand-charcoal/70">Conecta con clientes potenciales, colegas y líderes de opinión de manera estratégica</p>
+                </div>
+
+                <div class="text-center p-6 bg-brand-cream/20 rounded-lg">
+                  <i class="fas fa-search text-3xl text-brand-gold mb-4"></i>
+                  <h4 class="font-semibold text-brand-charcoal mb-2">Oportunidades Freelance</h4>
+                  <p class="text-sm text-brand-charcoal/70">Muchas empresas publican ofertas freelance directamente en la plataforma</p>
+                </div>
+
+                <div class="text-center p-6 bg-brand-cream/20 rounded-lg">
+                  <i class="fas fa-globe text-3xl text-brand-gold mb-4"></i>
+                  <h4 class="font-semibold text-brand-charcoal mb-2">Alcance Global</h4>
+                  <p class="text-sm text-brand-charcoal/70">Acceso a clientes internacionales más allá del mercado local</p>
+                </div>
+              </div>
+
+              <div class="mt-8 p-6 bg-brand-charcoal/5 rounded-lg">
+                <h4 class="font-semibold text-brand-charcoal mb-3">Estadísticas Clave</h4>
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-brand-charcoal/70">Ofertas freelance en España</span>
+                    <span class="font-semibold text-brand-gold">Alta demanda</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-brand-charcoal/70">Filtro por trabajos remotos</span>
+                    <span class="font-semibold text-brand-gold">Disponible</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 1.3 -->
+          <div id="module1-3" class="module-section">
+            <div class="bg-gradient-to-r from-brand-gold/10 to-brand-amber/10 rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-bullseye text-brand-gold mr-3"></i>
+                1.3 Definición de Objetivos y Público Objetivo
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Objetivos SMART</h4>
+                  <div class="space-y-3">
+                    <div class="flex items-center p-3 bg-white rounded-lg">
+                      <i class="fas fa-target text-brand-gold mr-3"></i>
+                      <span class="text-sm"><strong>Específicos:</strong> Definir resultados concretos</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-white rounded-lg">
+                      <i class="fas fa-chart-line text-brand-gold mr-3"></i>
+                      <span class="text-sm"><strong>Medibles:</strong> Indicadores cuantificables</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-white rounded-lg">
+                      <i class="fas fa-mountain text-brand-gold mr-3"></i>
+                      <span class="text-sm"><strong>Alcanzables:</strong> Metas realistas</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-white rounded-lg">
+                      <i class="fas fa-link text-brand-gold mr-3"></i>
+                      <span class="text-sm"><strong>Relevantes:</strong> Alineados con tu visión</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-white rounded-lg">
+                      <i class="fas fa-clock text-brand-gold mr-3"></i>
+                      <span class="text-sm"><strong>Temporales:</strong> Plazos definidos</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Ideal Customer Profile (ICP)</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Identifica a tus clientes ideales entendiendo sus características demográficas, necesidades, puntos débiles y comportamientos en línea.
+                  </p>
+
+                  <div class="bg-white p-4 rounded-lg">
+                    <h5 class="font-medium text-brand-charcoal mb-2">Ejemplo Práctico</h5>
+                    <p class="text-sm text-brand-charcoal/70 mb-2">
+                      <strong>Nicho:</strong> Diseñador web para hostelería
+                    </p>
+                    <p class="text-sm text-brand-charcoal/70 mb-2">
+                      <strong>ICP:</strong> Propietarios de restaurantes o hoteles pequeños que buscan mejorar su presencia online
+                    </p>
+                    <p class="text-sm text-brand-charcoal/70">
+                      <strong>Enfoque:</strong> Contenido sobre diseño web para atraer clientes locales y turistas
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Module 2: Profile Optimization -->
+      <section id="module2" class="module-section mb-16">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-bold text-brand-charcoal mb-4">Módulo 2: Optimización de Perfil</h2>
+            <div class="w-24 h-1 bg-brand-gold mx-auto mb-4"></div>
+            <p class="text-xl text-brand-sage max-w-3xl mx-auto">Transforma tu perfil en una poderosa herramienta de marketing</p>
+          </div>
+
+          <!-- Section 2.1 -->
+          <div id="module2-1" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-star text-brand-gold mr-3"></i>
+                2.1 Creación de un Perfil que Destaque
+              </h3>
+
+              <div class="mb-8">
+                <div class="bg-brand-charcoal text-white p-6 rounded-xl mb-6">
+                  <h4 class="font-semibold text-xl mb-3">Nivel &#34;All-Star&#34; en LinkedIn</h4>
+                  <p class="text-gray-300 mb-4">
+                    Solo el 51% de los perfiles alcanzan este nivel de completitud <a href="https://careerconfidential.com/linkedins-profile-strength-indicator-how-do-you-measure-up/" class="text-brand-light-gold hover:underline" target="_blank">[28]</a>.
+                    Superar esta estadística es un diferenciador crucial.
+                  </p>
+                  <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 class="font-medium text-brand-light-gold mb-2">7 Secciones Clave</h5>
+                      <ul class="text-sm space-y-1 text-gray-300">
+                        <li>• Foto de perfil profesional</li>
+                        <li>• Ubicación y sector</li>
+                        <li>• Educación y experiencia</li>
+                        <li>• Habilidades (mínimo 3)</li>
+                        <li>• Resumen convincente</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 class="font-medium text-brand-light-gold mb-2">Requisitos Adicionales</h5>
+                      <ul class="text-sm space-y-1 text-gray-300">
+                        <li>• Mínimo 2 posiciones pasadas</li>
+                        <li>• Al menos 50 conexiones</li>
+                        <li>• Coherencia visual en todas plataformas</li>
+                        <li>• Foto profesional consistente</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-brand-cream/30 p-6 rounded-lg">
+                <h4 class="font-semibold text-brand-charcoal mb-4">Beneficios de un Perfil Completo</h4>
+                <div class="grid md:grid-cols-3 gap-4">
+                  <div class="text-center">
+                    <i class="fas fa-search-plus text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-brand-charcoal">Mejor SEO</h5>
+                    <p class="text-sm text-brand-charcoal/70">Mayor visibilidad en motores de búsqueda</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-handshake text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-brand-charcoal">Más Credibilidad</h5>
+                    <p class="text-sm text-brand-charcoal/70">Genera confianza con clientes potenciales</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-magnet text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-brand-charcoal">Atracción Pasiva</h5>
+                    <p class="text-sm text-brand-charcoal/70">Clientes te encuentran sin esfuerzo activo</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2.2 -->
+          <div id="module2-2" class="module-section mb-12">
+            <div class="bg-gradient-to-br from-brand-gold/10 via-white to-brand-amber/10 rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-quote-left text-brand-gold mr-3"></i>
+                2.2 El Poder del Titular y el Resumen
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4 flex items-center">
+                    <i class="fas fa-heading text-brand-gold mr-2"></i>Titular Impactante
+                  </h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    No uses solo un título de trabajo. Comunica especialización, nicho y beneficio de manera concisa.
+                  </p>
+
+                  <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+                    <p class="text-red-700 text-sm font-medium">❌ Ejemplo Débil:</p>
+                    <p class="text-red-600 text-sm">&#34;Freelance Writer&#34;</p>
+                  </div>
+
+                  <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                    <p class="text-green-700 text-sm font-medium">✅ Ejemplo Fuerte:</p>
+                    <p class="text-green-600 text-sm">&#34;Copywriter Especializado en Conversión para Empresas SaaS | Aumento de Leads y Ventas&#34;</p>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4 flex items-center">
+                    <i class="fas fa-pen text-brand-gold mr-2"></i>Resumen Persuasivo
+                  </h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Cuenta una historia completa, enfócate en el cliente y explica &#34;por qué&#34; y &#34;cómo&#34; ayudas.
+                  </p>
+
+                  <div class="space-y-3">
+                    <div class="flex items-center text-sm">
+                      <i class="fas fa-check text-brand-gold mr-2"></i>
+                      <span>Escrito en primera persona</span>
+                    </div>
+                    <div class="flex items-center text-sm">
+                      <i class="fas fa-check text-brand-gold mr-2"></i>
+                      <span>Centrado en beneficios para el cliente</span>
+                    </div>
+                    <div class="flex items-center text-sm">
+                      <i class="fas fa-check text-brand-gold mr-2"></i>
+                      <span>Incluye resultados cuantificables</span>
+                    </div>
+                    <div class="flex items-center text-sm">
+                      <i class="fas fa-check text-brand-gold mr-2"></i>
+                      <span>Refleja tu personalidad de marca</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2.3 -->
+          <div id="module2-3" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-key text-brand-gold mr-3"></i>
+                2.3 Uso Estratégico de Palabras Clave
+              </h3>
+
+              <div class="mb-6">
+                <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片4.png" alt="Freelancer trabajando en optimización SEO para perfil LinkedIn" class="w-full h-64 object-cover rounded-lg mb-4" size="medium" aspect="wide" query="freelancer trabajando en SEO LinkedIn" referrerpolicy="no-referrer"/>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Secciones para Optimizar</h4>
+                  <div class="space-y-3">
+                    <div class="flex items-center p-3 bg-brand-charcoal/5 rounded-lg">
+                      <i class="fas fa-tag text-brand-gold mr-3"></i>
+                      <span class="text-sm"><strong>Titular:</strong> Palabras clave principales</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-brand-charcoal/5 rounded-lg">
+                      <i class="fas fa-file-text text-brand-gold mr-3"></i>
+                      <span class="text-sm"><strong>Resumen:</strong> Integración natural</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-brand-charcoal/5 rounded-lg">
+                      <i class="fas fa-briefcase text-brand-gold mr-3"></i>
+                      <span class="text-sm"><strong>Experiencia:</strong> Descripciones detalladas</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-brand-charcoal/5 rounded-lg">
+                      <i class="fas fa-cogs text-brand-gold mr-3"></i>
+                      <span class="text-sm"><strong>Habilidades:</strong> Términos específicos</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Ejemplo Práctico</h4>
+                  <div class="bg-brand-cream/30 p-4 rounded-lg mb-4">
+                    <p class="text-sm font-medium text-brand-charcoal mb-2">Desarrollador Web Freelance</p>
+                    <ul class="text-xs text-brand-charcoal/70 space-y-1">
+                      <li>• &#34;desarrollador WordPress freelance España&#34;</li>
+                      <li>• &#34;creación tiendas online freelance&#34;</li>
+                      <li>• &#34;diseño web responsive freelance&#34;</li>
+                      <li>• &#34;mantenimiento WordPress freelance&#34;</li>
+                      <li>• &#34;freelance Barcelona&#34; o &#34;remoto España&#34;</li>
+                    </ul>
+                  </div>
+
+                  <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                    <p class="text-yellow-700 text-sm">
+                      <i class="fas fa-exclamation-triangle mr-2"></i>
+                      <strong>Importante:</strong> Evita el relleno de palabras clave. El texto debe sonar natural y centrado en personas.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2.4 -->
+          <div id="module2-4" class="module-section mb-12">
+            <div class="bg-brand-charcoal text-white rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold mb-6 flex items-center">
+                <i class="fas fa-trophy text-brand-gold mr-3"></i>
+                2.4 Experiencia y Logros para Freelancers
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-semibold text-brand-light-gold mb-4">Formato STAR</h4>
+                  <p class="text-gray-300 mb-4">
+                    Utiliza el método Situación-Tarea-Acción-Resultado para destacar logros concretos.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="bg-white/10 p-4 rounded-lg">
+                      <h5 class="font-medium text-brand-light-gold mb-2">Situación/Tarea</h5>
+                      <p class="text-sm text-gray-300">Desafío específico que enfrentaste</p>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-lg">
+                      <h5 class="font-medium text-brand-light-gold mb-2">Acción</h5>
+                      <p class="text-sm text-gray-300">Qué hiciste exactamente para resolverlo</p>
+                    </div>
+                    <div class="bg-white/10 p-4 rounded-lg">
+                      <h5 class="font-medium text-brand-light-gold mb-2">Resultado</h5>
+                      <p class="text-sm text-gray-300">Impacto cuantificable y medible</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-brand-light-gold mb-4">Ejemplo Completo</h4>
+                  <div class="bg-white/5 p-4 rounded-lg text-sm text-gray-300">
+                    <p class="mb-2"><strong>Situación/Tarea:</strong> Startup tecnológica necesitaba aumentar conciencia de marca y generar leads con presupuesto limitado.</p>
+                    <p class="mb-2"><strong>Acción:</strong> Diseñé estrategia integral de marketing en redes sociales, creando contenido de valor y ejecutando campañas segmentadas.</p>
+                    <p class="mb-2"><strong>Resultado:</strong> Aumento del 40% en tráfico web de redes sociales y generación de 25 nuevos leads de alta calidad en 3 meses.</p>
+                  </div>
+
+                  <div class="mt-4 p-4 bg-brand-gold/20 rounded-lg">
+                    <p class="text-sm text-brand-light-gold">
+                      <i class="fas fa-lightbulb mr-2"></i>
+                      Trata cada proyecto freelance significativo como una &#34;posición&#34; separada en tu experiencia.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2.5 -->
+          <div id="module2-5" class="module-section">
+            <div class="bg-gradient-to-r from-brand-gold/10 via-white to-brand-amber/10 rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-thumbs-up text-brand-gold mr-3"></i>
+                2.5 Recomendaciones y Habilidades
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4 flex items-center">
+                    <i class="fas fa-star text-brand-gold mr-2"></i>Recomendaciones
+                  </h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Testimonios escritos por clientes que respaldan tus habilidades y profesionalismo. Proporcionan prueba social invaluable.
+                  </p>
+
+                  <div class="bg-brand-cream/30 p-4 rounded-lg mb-4">
+                    <h5 class="font-medium text-brand-charcoal mb-2">Cómo obtener buenas recomendaciones:</h5>
+                    <ul class="text-sm text-brand-charcoal/70 space-y-1">
+                      <li>• Solicítalas después de completar proyectos exitosos</li>
+                      <li>• Pide que destaquen aspectos específicos de tu trabajo</li>
+                      <li>• Ofrece escribir recomendaciones para clientes</li>
+                      <li>• Mantén un tono profesional pero personalizado</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4 flex items-center">
+                    <i class="fas fa-cogs text-brand-gold mr-2"></i>Habilidades
+                  </h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    LinkedIn permite hasta 50 habilidades, pero enfócate en las más estratégicas y relevantes para tu nicho.
+                  </p>
+
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-brand-charcoal/5 p-3 rounded">
+                      <h6 class="font-medium text-brand-charcoal text-sm mb-2">Desarrollador Web</h6>
+                      <ul class="text-xs text-brand-charcoal/70 space-y-1">
+                        <li>• JavaScript</li>
+                        <li>• React</li>
+                        <li>• Front-End</li>
+                        <li>• API Integration</li>
+                      </ul>
+                    </div>
+                    <div class="bg-brand-charcoal/5 p-3 rounded">
+                      <h6 class="font-medium text-brand-charcoal text-sm mb-2">Redactor de Contenidos</h6>
+                      <ul class="text-xs text-brand-charcoal/70 space-y-1">
+                        <li>• Copywriting</li>
+                        <li>• SEO Writing</li>
+                        <li>• Content Strategy</li>
+                        <li>• Blogging</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 p-3 bg-blue-50 rounded-lg">
+                    <p class="text-blue-700 text-sm">
+                      <i class="fas fa-info-circle mr-2"></i>
+                      Los respaldos actúan como votos de confianza y mejoran tu visibilidad en búsquedas.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Module 3: Content Strategy -->
+      <section id="module3" class="module-section mb-16">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-bold text-brand-charcoal mb-4">Módulo 3: Estrategias de Contenido</h2>
+            <div class="w-24 h-1 bg-brand-gold mx-auto mb-4"></div>
+            <p class="text-xl text-brand-sage max-w-3xl mx-auto">Construye autoridad a través de contenido valioso</p>
+          </div>
+
+          <!-- Section 3.1 -->
+          <div id="module3-1" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-chess text-brand-gold mr-3"></i>
+                3.1 Desarrollo de Estrategia de Contenido
+              </h3>
+
+              <div class="mb-6">
+                <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片16.png" alt="Estrategia de contenido profesional para LinkedIn" class="w-full h-64 object-cover rounded-lg" size="medium" aspect="wide" query="estrategia de contenido linkedin profesional" referrerpolicy="no-referrer"/>
+              </div>
+
+              <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="text-center p-6 bg-brand-cream/30 rounded-lg">
+                  <i class="fas fa-bullseye text-3xl text-brand-gold mb-4"></i>
+                  <h4 class="font-semibold text-brand-charcoal mb-2">Definir Objetivos</h4>
+                  <p class="text-sm text-brand-charcoal/70">¿Visibilidad, autoridad o generación de leads?</p>
+                </div>
+                <div class="text-center p-6 bg-brand-cream/30 rounded-lg">
+                  <i class="fas fa-users text-3xl text-brand-gold mb-4"></i>
+                  <h4 class="font-semibold text-brand-charcoal mb-2">Conocer Audiencia</h4>
+                  <p class="text-sm text-brand-charcoal/70">¿Qué valoran y qué problemas tienen?</p>
+                </div>
+                <div class="text-center p-6 bg-brand-cream/30 rounded-lg">
+                  <i class="fas fa-calendar text-3xl text-brand-gold mb-4"></i>
+                  <h4 class="font-semibold text-brand-charcoal mb-2">Planificación</h4>
+                  <p class="text-sm text-brand-charcoal/70">Tipos de contenido, frecuencia y temas</p>
+                </div>
+              </div>
+
+              <div class="bg-brand-charcoal/5 p-6 rounded-lg">
+                <h4 class="font-semibold text-brand-charcoal mb-4">Elementos Clave de la Estrategia</h4>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 class="font-medium text-brand-charcoal mb-3">Tipos de Contenido</h5>
+                    <ul class="space-y-2 text-sm text-brand-charcoal/80">
+                      <li class="flex items-center"><i class="fas fa-check text-brand-gold mr-2"></i>Artículos largos y análisis</li>
+                      <li class="flex items-center"><i class="fas fa-check text-brand-gold mr-2"></i>Posts cortos con consejos</li>
+                      <li class="flex items-center"><i class="fas fa-check text-brand-gold mr-2"></i>Videos e infografías</li>
+                      <li class="flex items-center"><i class="fas fa-check text-brand-gold mr-2"></i>Presentaciones y guías</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 class="font-medium text-brand-charcoal mb-3">Frecuencia Ideal</h5>
+                    <p class="text-sm text-brand-charcoal/80 mb-3">
+                      La consistencia es más importante que la cantidad. Es mejor publicar regularmente de manera sostenible que saturar y desaparecer.
+                    </p>
+                    <div class="bg-white p-3 rounded border-l-4 border-brand-gold">
+                      <p class="text-sm text-brand-charcoal/70">
+                        <strong>Recomendado:</strong> 2-3 veces por semana con contenido de calidad
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3.2 -->
+          <div id="module3-2" class="module-section mb-12">
+            <div class="bg-gradient-to-br from-brand-gold/10 to-brand-amber/10 rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-fire text-brand-gold mr-3"></i>
+                3.2 Creación de Publicaciones de Alto Impacto
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Entender el Algoritmo</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    LinkedIn prioriza contenido que genera conversaciones significativas y engagement (reacciones, comentarios, compartidos).
+                  </p>
+
+                  <div class="space-y-3">
+                    <div class="flex items-start p-3 bg-green-50 rounded-lg">
+                      <i class="fas fa-arrow-up text-green-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-green-800 text-sm">Contenido que funciona</h5>
+                        <p class="text-green-700 text-xs">Debates, insights únicos, historias personales, consejos prácticos</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start p-3 bg-red-50 rounded-lg">
+                      <i class="fas fa-arrow-down text-red-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-red-800 text-sm">Contenido menos efectivo</h5>
+                        <p class="text-red-700 text-xs">Anuncios directos, contenido genérico, autopromoción excesiva</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Formato Visual</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    El formato visual del contenido juega un papel crucial en el engagement.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="flex items-center justify-between p-3 bg-brand-charcoal/5 rounded-lg">
+                      <span class="text-sm font-medium text-brand-charcoal">Videos</span>
+                      <span class="text-xs text-brand-gold bg-brand-gold/20 px-2 py-1 rounded">Muy efectivos</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-brand-charcoal/5 rounded-lg">
+                      <span class="text-sm font-medium text-brand-charcoal">Imágenes</span>
+                      <span class="text-xs text-brand-gold bg-brand-gold/20 px-2 py-1 rounded">Alto impacto</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-brand-charcoal/5 rounded-lg">
+                      <span class="text-sm font-medium text-brand-charcoal">Infografías</span>
+                      <span class="text-xs text-brand-gold bg-brand-gold/20 px-2 py-1 rounded">Muy compartidas</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-brand-charcoal/5 rounded-lg">
+                      <span class="text-sm font-medium text-brand-charcoal">Texto plano</span>
+                      <span class="text-xs text-brand-sage bg-brand-sage/20 px-2 py-1 rounded">Menos engagement</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 bg-white p-6 rounded-lg">
+                <h4 class="font-semibold text-brand-charcoal mb-4">Estructura de Publicación Ideal</h4>
+                <div class="grid md:grid-cols-3 gap-4">
+                  <div class="text-center p-4 bg-brand-gold/10 rounded-lg">
+                    <i class="fas fa-hook text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-brand-charcoal mb-1">Gancho Inicial</h5>
+                    <p class="text-xs text-brand-charcoal/70">Captura atención en los primeros segundos</p>
+                  </div>
+                  <div class="text-center p-4 bg-brand-gold/10 rounded-lg">
+                    <i class="fas fa-value text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-brand-charcoal mb-1">Valor Principal</h5>
+                    <p class="text-xs text-brand-charcoal/70">Contenido útil y procesable</p>
+                  </div>
+                  <div class="text-center p-4 bg-brand-gold/10 rounded-lg">
+                    <i class="fas fa-arrow-right text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-brand-charcoal mb-1">LLamada a la Acción</h5>
+                    <p class="text-xs text-brand-charcoal/70">Guía al siguiente paso claro</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3.3 -->
+          <div id="module3-3" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-network-wired text-brand-gold mr-3"></i>
+                3.3 Técnicas de Networking Efectivo
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Personalización es Clave</h4>
+                  <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
+                    <p class="text-red-700 text-sm font-medium mb-2">❌ Mensaje Predeterminado:</p>
+                    <p class="text-red-600 text-sm italic">&#34;Me gustaría agregarte a mi red profesional&#34;</p>
+                  </div>
+
+                  <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                    <p class="text-green-700 text-sm font-medium mb-2">✅ Mensaje Personalizado:</p>
+                    <p class="text-green-600 text-sm italic">&#34;Hola [Nombre], vi tu artículo sobre [Tema] y me pareció muy interesante. Me encantaría conectarnos para compartir ideas sobre [Área Común]&#34;</p>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Nutrir Conexiones</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    El networking no es acumular contactos, sino cultivar relaciones de calidad.
+                  </p>
+
+                  <ul class="space-y-3 text-sm text-brand-charcoal/80">
+                    <li class="flex items-center">
+                      <i class="fas fa-heart text-brand-gold mr-3"></i>
+                      <span>Interactúa con su contenido (me gusta, comenta, comparte)</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-envelope text-brand-gold mr-3"></i>
+                      <span>Envía mensajes de seguimiento ocasionales</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-phone text-brand-gold mr-3"></i>
+                      <span>Propone llamadas virtuales cuando haya sinergia clara</span>
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-gift text-brand-gold mr-3"></i>
+                      <span>Sé generoso: ofrece ayuda sin esperar retorno inmediato</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-brand-charcoal text-white p-6 rounded-lg">
+                <h4 class="font-semibold text-brand-light-gold mb-4">Búsqueda Avanzada para Networking Dirigido</h4>
+                <div class="grid md:grid-cols-4 gap-4 text-sm">
+                  <div class="text-center">
+                    <i class="fas fa-building text-2xl text-brand-gold mb-2"></i>
+                    <p class="text-gray-300">Empresas específicas</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-industry text-2xl text-brand-gold mb-2"></i>
+                    <p class="text-gray-300">Industria objetivo</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-map-marker-alt text-2xl text-brand-gold mb-2"></i>
+                    <p class="text-gray-300">Ubicación geográfica</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-user-friends text-2xl text-brand-gold mb-2"></i>
+                    <p class="text-gray-300">Conexiones en común</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3.4 -->
+          <div id="module3-4" class="module-section">
+            <div class="bg-gradient-to-r from-brand-gold/10 via-white to-brand-amber/10 rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-users text-brand-gold mr-3"></i>
+                3.4 Participación en Grupos y Comunidades
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Estrategia de Participación</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Simplemente unirse a grupos no es suficiente. La clave está en la participación activa y valiosa.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="flex items-start p-4 bg-brand-cream/30 rounded-lg">
+                      <i class="fas fa-comment text-brand-gold mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-brand-charcoal text-sm">Contribuye con comentarios perspicaces</h5>
+                        <p class="text-xs text-brand-charcoal/70">No solo &#34;gracias&#34;, sino insights reales</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-brand-cream/30 rounded-lg">
+                      <i class="fas fa-share text-brand-gold mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-brand-charcoal text-sm">Comparte contenido relevante</h5>
+                        <p class="text-xs text-brand-charcoal/70">Propio o de fuentes creíbles</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-brand-cream/30 rounded-lg">
+                      <i class="fas fa-question-circle text-brand-gold mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-brand-charcoal text-sm">Responde preguntas de miembros</h5>
+                        <p class="text-xs text-brand-charcoal/70">Demuestra expertise de manera útil</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Qué Evitar</h4>
+                  <div class="space-y-4">
+                    <div class="flex items-start p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+                      <i class="fas fa-times text-red-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-red-800 text-sm">Autopromoción descarada</h5>
+                        <p class="text-xs text-red-700">Mal visto y puede llevar a expulsión</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+                      <i class="fas fa-times text-red-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-red-800 text-sm">Comentarios genéricos</h5>
+                        <p class="text-xs text-red-700">No aportan valor real a la conversación</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+                      <i class="fas fa-times text-red-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-red-800 text-sm">Spam o mensajes repetitivos</h5>
+                        <p class="text-xs text-red-700">Daña tu reputación profesional</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-6 p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                    <h5 class="font-medium text-green-800 text-sm mb-2">Ejemplo de Participación Efectiva</h5>
+                    <p class="text-xs text-green-700 italic">
+                      &#34;Interesante punto sobre [tema]. Desde mi experiencia trabajando con [tipo de clientes], he encontrado que [insight específico]. ¿Has considerado [solución o enfoque alternativo]?&#34;
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Module 4: Authority Building -->
+      <section id="module4" class="module-section mb-16">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-bold text-brand-charcoal mb-4">Módulo 4: Construcción de Autoridad</h2>
+            <div class="w-24 h-1 bg-brand-gold mx-auto mb-4"></div>
+            <p class="text-xl text-brand-sage max-w-3xl mx-auto">Posiciónate como experto en tu campo</p>
+          </div>
+
+          <!-- Section 4.1 -->
+          <div id="module4-1" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-edit text-brand-gold mr-3"></i>
+                4.1 Publicación de Artículos y Posts Largos
+              </h3>
+
+              <div class="mb-6">
+                <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片17.png" alt="Profesional trabajando en un artículo largo para LinkedIn" class="w-full h-64 object-cover rounded-lg" size="medium" aspect="wide" style="photo" query="profesional escribiendo articulo linkedin" referrerpolicy="no-referrer"/>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-brand-cream/30 p-6 rounded-lg">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Beneficios de Contenido Largo</h4>
+                  <ul class="space-y-3 text-sm text-brand-charcoal/80">
+                    <li class="flex items-start">
+                      <i class="fas fa-brain text-brand-gold mr-3 mt-1"></i>
+                      <span>Explora temas complejos en profundidad</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-crown text-brand-gold mr-3 mt-1"></i>
+                      <span>Posiciona como pensador líder</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-search text-brand-gold mr-3 mt-1"></i>
+                      <span>Indexado por motores de búsqueda</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-link text-brand-gold mr-3 mt-1"></i>
+                      <span>Asociado directamente con tu perfil</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg border border-gray-200">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Ejemplos de Títulos Efectivos</h4>
+                  <div class="space-y-3">
+                    <div class="p-3 bg-brand-charcoal/5 rounded text-sm">
+                      <strong>Consultor de Negocios:</strong> &#34;Las 5 Estrategias Clave para Escalar tu Startup en el Mercado Español&#34;
+                    </div>
+                    <div class="p-3 bg-brand-charcoal/5 rounded text-sm">
+                      <strong>Diseñador Gráfico:</strong> &#34;Tendencias de Diseño para 2025: Cómo Aplicarlas a tu Marca&#34;
+                    </div>
+                    <div class="p-3 bg-brand-charcoal/5 rounded text-sm">
+                      <strong>Marketing Digital:</strong> &#34;Guía Completa de SEO Local para Pequeñas Empresas&#34;
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-brand-charcoal text-white p-6 rounded-lg">
+                <h4 class="font-semibold text-brand-light-gold mb-4">Estructura de Artículo Exitoso</h4>
+                <div class="grid md:grid-cols-4 gap-4">
+                  <div class="text-center">
+                    <i class="fas fa-hook text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-sm">Introducción Atractiva</h5>
+                    <p class="text-xs text-gray-300">Captura atención inmediata</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-list text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-sm">Desarrollo Claro</h5>
+                    <p class="text-xs text-gray-300">Estructura lógica y fácil de seguir</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-image text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-sm">Elementos Visuales</h5>
+                    <p class="text-xs text-gray-300">Imágenes, subtítulos, viñetas</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-bullseye text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-sm">Conclusión con CTA</h5>
+                    <p class="text-xs text-gray-300">Resumen y llamado a la acción</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4.2 -->
+          <div id="module4-2" class="module-section mb-12">
+            <div class="bg-gradient-to-br from-brand-gold/10 to-brand-amber/10 rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-newspaper text-brand-gold mr-3"></i>
+                4.2 Uso de LinkedIn Pulse
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Qué es LinkedIn Pulse</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Plataforma de publicación nativa de LinkedIn para artículos largos y detallados, integrada directamente en la plataforma.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                      <i class="fas fa-eye text-green-600 mr-3"></i>
+                      <div>
+                        <h5 class="font-medium text-green-800 text-sm">Visibilidad Sostenida</h5>
+                        <p class="text-green-700 text-xs">Potencial de alcanzar audiencias más allá de tu red</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center p-3 bg-blue-50 rounded-lg">
+                      <i class="fas fa-globe text-blue-600 mr-3"></i>
+                      <div>
+                        <h5 class="font-medium text-blue-800 text-sm">Indexación SEO</h5>
+                        <p class="text-blue-700 text-xs">Descubrible a través de motores de búsqueda</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                      <i class="fas fa-star text-purple-600 mr-3"></i>
+                      <div>
+                        <h5 class="font-medium text-purple-800 text-sm">Destacados por LinkedIn</h5>
+                        <p class="text-purple-700 text-xs">Posibilidad de ser destacado en secciones relevantes</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Mejores Prácticas</h4>
+
+                  <div class="space-y-4">
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Calidad del Contenido</h5>
+                      <ul class="text-xs text-brand-charcoal/70 space-y-1">
+                        <li>• Bien investigado e informativo</li>
+                        <li>• Original y con perspectiva única</li>
+                        <li>• Valor tangible para el lector</li>
+                        <li>• Lenguaje claro y profesional</li>
+                      </ul>
+                    </div>
+
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Optimización SEO</h5>
+                      <ul class="text-xs text-brand-charcoal/70 space-y-1">
+                        <li>• Palabras clave en título y subtítulos</li>
+                        <li>• Estructura clara con encabezados</li>
+                        <li>• Imágenes relevantes con texto alternativo</li>
+                        <li>• URL limpia y descriptiva</li>
+                      </ul>
+                    </div>
+
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Promoción</h5>
+                      <ul class="text-xs text-brand-charcoal/70 space-y-1">
+                        <li>• Comparte en feed de noticias</li>
+                        <li>• Envía a conexiones clave</li>
+                        <li>• Publica en grupos relevantes</li>
+                        <li>• Invita a comentar y compartir</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4.3 -->
+          <div id="module4-3" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-chart-line text-brand-gold mr-3"></i>
+                4.3 Estrategias para Aumentar Interacción
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Contenido que Invita a la Participación</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    El algoritmo de LinkedIn prioriza contenido que genera engagement, aumentando su visibilidad orgánica.
+                  </p>
+
+                  <div class="space-y-3">
+                    <div class="flex items-start p-3 bg-blue-50 rounded-lg">
+                      <i class="fas fa-question text-blue-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-blue-800 text-sm">Preguntas Abiertas</h5>
+                        <p class="text-blue-700 text-xs">Invita a compartir opiniones y experiencias</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start p-3 bg-green-50 rounded-lg">
+                      <i class="fas fa-poll text-green-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-green-800 text-sm">Encuestas y Sondeos</h5>
+                        <p class="text-green-700 text-xs">Fáciles de interactuar y generan datos valiosos</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start p-3 bg-purple-50 rounded-lg">
+                      <i class="fas fa-heart text-purple-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-purple-800 text-sm">Contenido Emocional</h5>
+                        <p class="text-purple-700 text-xs">Inspira, educa o entretiene de manera genuina</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Interacción Proactiva</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    No solo crees contenido, sé parte activa de las conversaciones de otros.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="p-4 bg-brand-cream/30 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Comentarios Significativos</h5>
+                      <p class="text-xs text-brand-charcoal/70">
+                        En lugar de &#34;gran publicación&#34;, comparte un insight o experiencia personal relacionada.
+                      </p>
+                    </div>
+
+                    <div class="p-4 bg-brand-cream/30 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Compartir con Valor Añadido</h5>
+                      <p class="text-xs text-brand-charcoal/70">
+                        Al compartir contenido de otros, agrega tu propia perspectiva o pregunta.
+                      </p>
+                    </div>
+
+                    <div class="p-4 bg-brand-cream/30 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Hashtags Estratégicos</h5>
+                      <p class="text-xs text-brand-charcoal/70">
+                        Usa hashtags relevantes para ampliar el alcance más allá de tu red.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-brand-charcoal text-white p-6 rounded-lg">
+                <h4 class="font-semibold text-brand-light-gold mb-4">Análisis y Optimización</h4>
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div class="text-center">
+                    <i class="fas fa-analytics text-3xl text-brand-gold mb-3"></i>
+                    <h5 class="font-medium mb-2">LinkedIn Analytics</h5>
+                    <p class="text-sm text-gray-300">Identifica momentos óptimos de publicación</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-chart-bar text-3xl text-brand-gold mb-3"></i>
+                    <h5 class="font-medium mb-2">Monitoriza Rendimiento</h5>
+                    <p class="text-sm text-gray-300">Alcance, engagement y tasa de clicks</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-sync text-3xl text-brand-gold mb-3"></i>
+                    <h5 class="font-medium mb-2">Ajusta Estrategia</h5>
+                    <p class="text-sm text-gray-300">Refina contenido basado en datos</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4.4 -->
+          <div id="module4-4" class="module-section">
+            <div class="bg-gradient-to-r from-brand-gold/10 via-white to-brand-amber/10 rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-handshake text-brand-gold mr-3"></i>
+                4.4 Colaboraciones y Publicaciones Invitadas
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Colaboraciones Estratégicas</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Trabajar con otros profesionales puede exponer tu marca a nuevas audiencias relevantes.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Webinars Conjuntos</h5>
+                      <p class="text-xs text-brand-charcoal/70">Comparte conocimientos y promociona en ambas redes</p>
+                    </div>
+
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Artículos Co-Escritos</h5>
+                      <p class="text-xs text-brand-charcoal/70">Combina expertise para contenido más completo</p>
+                    </div>
+
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Series Interactivas</h5>
+                      <p class="text-xs text-brand-charcoal/70">Publicaciones relacionadas que generan conversación</p>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                    <p class="text-green-700 text-sm">
+                      <strong>Ejemplo:</strong> Diseñador web + Especialista SEO crean guía integral sobre &#34;Diseño y Optimización de Sitios Web para Conversiones&#34;
+                    </p>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Publicaciones Invitadas</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Escribir para plataformas con audiencia establecida puede impulsar significativamente tu visibilidad.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="flex items-start p-3 bg-blue-50 rounded-lg">
+                      <i class="fas fa-pen-fancy text-blue-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-blue-800 text-sm">Como Autor Invitado</h5>
+                        <p class="text-blue-700 text-xs">Muestra expertise a nueva audiencia</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start p-3 bg-purple-50 rounded-lg">
+                      <i class="fas fa-user-plus text-purple-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-purple-800 text-sm">Invitando Expertos</h5>
+                        <p class="text-purple-700 text-xs">Ofrece valor adicional a tu audiencia</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start p-3 bg-green-50 rounded-lg">
+                      <i class="fas fa-arrow-right text-green-600 mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-green-800 text-sm">Tráfico de Regreso</h5>
+                        <p class="text-green-700 text-xs">Dirige lectores a tu perfil de LinkedIn</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+                    <p class="text-yellow-700 text-sm">
+                      <i class="fas fa-lightbulb mr-2"></i>
+                      <strong>Selección Cuidadosa:</strong> Elige socios y plataformas cuyos valores y audiencia se alineen con tu marca personal.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Module 5: Conversion -->
+      <section id="module5" class="module-section mb-16">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-bold text-brand-charcoal mb-4">Módulo 5: Conversión y Generación de Leads</h2>
+            <div class="w-24 h-1 bg-brand-gold mx-auto mb-4"></div>
+            <p class="text-xl text-brand-sage max-w-3xl mx-auto">Transforma conexiones en oportunidades de negocio</p>
+          </div>
+
+          <!-- Section 5.1 -->
+          <div id="module5-1" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-exchange-alt text-brand-gold mr-3"></i>
+                5.1 Convertir Conexiones en Clientes
+              </h3>
+
+              <div class="mb-6">
+                <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片10.png" alt="Freelancer en reunión virtual con cliente potencial" class="w-full h-64 object-cover rounded-lg" size="medium" aspect="wide" style="photo" query="reunion virtual freelancer cliente" referrerpolicy="no-referrer"/>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Estrategia de Conversión</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    No se trata de vender agresivamente a cada nueva conexión, sino de nutrir relaciones hasta que surjan oportunidades naturales.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">1. Segmentación</h5>
+                      <p class="text-xs text-brand-charcoal/70">Clasifica conexiones por potencial: clientes, colaboradores o fuentes de referencias</p>
+                    </div>
+
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">2. Ofrecer Valor</h5>
+                      <p class="text-xs text-brand-charcoal/70">Comparte contenido relevante, insights gratuitos, invitaciones a eventos</p>
+                    </div>
+
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">3. Escucha Activa</h5>
+                      <p class="text-xs text-brand-charcoal/70">Comprende necesidades y desafíos específicos del cliente potencial</p>
+                    </div>
+
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">4. Solución Personalizada</h5>
+                      <p class="text-xs text-brand-charcoal/70">Presenta servicios como respuesta a problemas identificados</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Proceso de Nutrición</h4>
+
+                  <div class="space-y-4">
+                    <div class="flex items-start p-4 bg-blue-50 rounded-lg">
+                      <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-1">1</div>
+                      <div>
+                        <h5 class="font-medium text-blue-800 text-sm">Interacción Inicial</h5>
+                        <p class="text-blue-700 text-xs">Like, comentario o mensaje personalizado</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start p-4 bg-green-50 rounded-lg">
+                      <div class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-1">2</div>
+                      <div>
+                        <h5 class="font-medium text-green-800 text-sm">Seguimiento</h5>
+                        <p class="text-green-700 text-xs">Mensaje de seguimiento compartiendo contenido relevante</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start p-4 bg-purple-50 rounded-lg">
+                      <div class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-1">3</div>
+                      <div>
+                        <h5 class="font-medium text-purple-800 text-sm">Llamada Exploratoria</h5>
+                        <p class="text-purple-700 text-xs">Conversación para entender necesidades específicas</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start p-4 bg-orange-50 rounded-lg">
+                      <div class="bg-orange-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold mr-3 mt-1">4</div>
+                      <div>
+                        <h5 class="font-medium text-orange-800 text-sm">Propuesta</h5>
+                        <p class="text-orange-700 text-xs">Solución personalizada basada en conversación</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-6 p-4 bg-brand-gold/10 rounded-lg border-l-4 border-brand-gold">
+                    <p class="text-brand-charcoal text-sm">
+                      <i class="fas fa-clock text-brand-gold mr-2"></i>
+                      <strong>Paciencia:</strong> El proceso puede tomar semanas o meses. Mantén contacto periódico sin ser intrusivo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5.2 -->
+          <div id="module5-2" class="module-section mb-12">
+            <div class="bg-gradient-to-br from-brand-gold/10 to-brand-amber/10 rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-comments text-brand-gold mr-3"></i>
+                5.2 Uso de Feed y Mensajes Directos
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4 flex items-center">
+                    <i class="fas fa-newspaper text-brand-gold mr-2"></i>Feed de LinkedIn
+                  </h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Tu página de inicio es donde monitoreas actividad, descubres contenido relevante y participas en conversaciones.
+                  </p>
+
+                  <div class="space-y-3">
+                    <div class="flex items-center p-3 bg-brand-cream/30 rounded-lg">
+                      <i class="fas fa-eye text-brand-gold mr-3"></i>
+                      <span class="text-sm">Monitoriza actividad de conexiones clave</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-brand-cream/30 rounded-lg">
+                      <i class="fas fa-heart text-brand-gold mr-3"></i>
+                      <span class="text-sm">Interactúa con contenido de clientes potenciales</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-brand-cream/30 rounded-lg">
+                      <i class="fas fa-share text-brand-gold mr-3"></i>
+                      <span class="text-sm">Comparte contenido valioso con comentarios propios</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-brand-cream/30 rounded-lg">
+                      <i class="fas fa-bullhorn text-brand-gold mr-3"></i>
+                      <span class="text-sm">Publica contenido que demuestre expertise</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4 flex items-center">
+                    <i class="fas fa-envelope text-brand-gold mr-2"></i>Mensajes Directos
+                  </h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Canal más personal para comunicación y prospección, pero debe usarse estratégicamente.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+                      <h5 class="font-medium text-red-800 text-sm mb-2">Qué Evitar</h5>
+                      <ul class="text-xs text-red-700 space-y-1">
+                        <li>• Mensajes genéricos de venta</li>
+                        <li>• Contacto sin relación previa</li>
+                        <li>• Mensajes largos y complejos</li>
+                        <li>• Autopromoción excesiva</li>
+                      </ul>
+                    </div>
+
+                    <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                      <h5 class="font-medium text-green-800 text-sm mb-2">Buenas Prácticas</h5>
+                      <ul class="text-xs text-green-700 space-y-1">
+                        <li>• Personalización basada en investigación</li>
+                        <li>• Ofrecer valor claro desde el primer mensaje</li>
+                        <li>• Enfoque en ayudar, no vender</li>
+                        <li>• Mensajes breves y respetuosos</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 bg-brand-charcoal text-white p-6 rounded-lg">
+                <h4 class="font-semibold text-brand-light-gold mb-4">Plantilla de Mensaje Efectivo</h4>
+                <div class="bg-white/10 p-4 rounded-lg">
+                  <p class="text-sm text-gray-200 mb-2">Asunto: Sobre [Tema Relevante]</p>
+                  <p class="text-sm text-gray-300 italic">
+                    &#34;Hola [Nombre], vi tu publicación sobre [tema específico] y me pareció muy interesante. Recientemente trabajé con [ejemplo relevante] donde logramos [resultado concreto]. Me encantaría compartir algunas ideas que podrían ser útiles para [su situación específica]. ¿Te interesaría una breve llamada de 15 minutos esta semana?&#34;
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5.3 -->
+          <div id="module5-3" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-search text-brand-gold mr-3"></i>
+                5.3 Estrategias de Prospección en LinkedIn
+              </h3>
+
+              <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="text-center p-6 bg-brand-cream/30 rounded-lg">
+                  <i class="fas fa-user-check text-3xl text-brand-gold mb-4"></i>
+                  <h4 class="font-semibold text-brand-charcoal mb-2">Definir ICP</h4>
+                  <p class="text-sm text-brand-charcoal/70">Cliente Ideal claro y específico</p>
+                </div>
+                <div class="text-center p-6 bg-brand-cream/30 rounded-lg">
+                  <i class="fas fa-filter text-3xl text-brand-gold mb-4"></i>
+                  <h4 class="font-semibold text-brand-charcoal mb-2">Búsqueda Avanzada</h4>
+                  <p class="text-sm text-brand-charcoal/70">Encontrar prospectos de alta calidad</p>
+                </div>
+                <div class="text-center p-6 bg-brand-cream/30 rounded-lg">
+                  <i class="fas fa-handshake text-3xl text-brand-gold mb-4"></i>
+                  <h4 class="font-semibold text-brand-charcoal mb-2">Contacto Estratégico</h4>
+                  <p class="text-sm text-brand-charcoal/70">Mensajes personalizados y valiosos</p>
+                </div>
+              </div>
+
+              <div class="bg-brand-charcoal/5 p-6 rounded-lg mb-8">
+                <h4 class="font-semibold text-brand-charcoal mb-4">Proceso de Prospección</h4>
+                <div class="grid md:grid-cols-4 gap-4">
+                  <div class="text-center">
+                    <div class="bg-brand-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                      <span class="font-bold">1</span>
+                    </div>
+                    <h5 class="font-medium text-brand-charcoal text-sm mb-1">Investigación</h5>
+                    <p class="text-xs text-brand-charcoal/70">Revisa perfil, actividad y empresa</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="bg-brand-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                      <span class="font-bold">2</span>
+                    </div>
+                    <h5 class="font-medium text-brand-charcoal text-sm mb-1">Personalización</h5>
+                    <p class="text-xs text-brand-charcoal/70">Menciona algo específico de su perfil</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="bg-brand-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                      <span class="font-bold">3</span>
+                    </div>
+                    <h5 class="font-medium text-brand-charcoal text-sm mb-1">Valor Inmediato</h5>
+                    <p class="text-xs text-brand-charcoal/70">Ofrece recurso o idea útil</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="bg-brand-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                      <span class="font-bold">4</span>
+                    </div>
+                    <h5 class="font-medium text-brand-charcoal text-sm mb-1">Seguimiento</h5>
+                    <p class="text-xs text-brand-charcoal/70">Contacto adicional si no hay respuesta</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-gradient-to-r from-brand-gold/10 to-brand-amber/10 p-6 rounded-lg">
+                <h4 class="font-semibold text-brand-charcoal mb-4">Filtros de Búsqueda Avanzada</h4>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 class="font-medium text-brand-charcoal text-sm mb-3">Criterios Principales</h5>
+                    <ul class="space-y-2 text-sm text-brand-charcoal/80">
+                      <li class="flex items-center"><i class="fas fa-building text-brand-gold mr-2"></i>Industria y tamaño de empresa</li>
+                      <li class="flex items-center"><i class="fas fa-user-tie text-brand-gold mr-2"></i>Cargo y nivel seniority</li>
+                      <li class="flex items-center"><i class="fas fa-map-marker-alt text-brand-gold mr-2"></i>Ubicación geográfica</li>
+                      <li class="flex items-center"><i class="fas fa-graduation-cap text-brand-gold mr-2"></i>Educación y habilidades</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 class="font-medium text-brand-charcoal text-sm mb-3">Criterios Avanzados</h5>
+                    <ul class="space-y-2 text-sm text-brand-charcoal/80">
+                      <li class="flex items-center"><i class="fas fa-users text-brand-gold mr-2"></i>Conexiones en común</li>
+                      <li class="flex items-center"><i class="fas fa-hashtag text-brand-gold mr-2"></i>Grupos a los que pertenecen</li>
+                      <li class="flex items-center"><i class="fas fa-calendar text-brand-gold mr-2"></i>Actividad reciente</li>
+                      <li class="flex items-center"><i class="fas fa-language text-brand-gold mr-2"></i>Palabras clave en perfil</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5.4 -->
+          <div id="module5-4" class="module-section">
+            <div class="bg-gradient-to-r from-brand-gold/10 via-white to-brand-amber/10 rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-link text-brand-gold mr-3"></i>
+                5.4 Integración con Otras Plataformas
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Sinergia entre Plataformas</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    LinkedIn puede complementar y mejorar tu credibilidad en otras plataformas freelance.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Enlaces Cruzados</h5>
+                      <p class="text-xs text-brand-charcoal/70">Incluye tu perfil de LinkedIn optimizado en Upwork, Fiverr u otras plataformas</p>
+                    </div>
+
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Reutilización de Contenido</h5>
+                      <p class="text-xs text-brand-charcoal/70">Artículos de LinkedIn Pulse pueden convertirse en entradas de blog</p>
+                    </div>
+
+                    <div class="p-4 bg-brand-charcoal/5 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Testimonios Cruzados</h5>
+                      <p class="text-xs text-brand-charcoal/70">Usa recomendaciones de LinkedIn en otras plataformas (con permiso)</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Plataformas Comunes</h4>
+
+                  <div class="space-y-4">
+                    <div class="flex items-center p-4 bg-blue-50 rounded-lg">
+                      <i class="fab fa-upwork text-2xl text-blue-600 mr-4"></i>
+                      <div>
+                        <h5 class="font-medium text-blue-800 text-sm">Upwork</h5>
+                        <p class="text-blue-700 text-xs">Proyectos diversos y clientes internacionales</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-green-50 rounded-lg">
+                      <i class="fab fa-fiverr text-2xl text-green-600 mr-4"></i>
+                      <div>
+                        <h5 class="font-medium text-green-800 text-sm">Fiverr</h5>
+                        <p class="text-green-700 text-xs">Servicios empaquetados y micro-proyectos</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-purple-50 rounded-lg">
+                      <i class="fas fa-laptop-code text-2xl text-purple-600 mr-4"></i>
+                      <div>
+                        <h5 class="font-medium text-purple-800 text-sm">Freelancer.com</h5>
+                        <p class="text-purple-700 text-xs">Variedad de proyectos y concursos</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center p-4 bg-orange-50 rounded-lg">
+                      <i class="fas fa-globe text-2xl text-orange-600 mr-4"></i>
+                      <div>
+                        <h5 class="font-medium text-orange-800 text-sm">Sitio Web Personal</h5>
+                        <p class="text-orange-700 text-xs">Control total de tu marca y mensaje</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-6 p-4 bg-brand-gold/10 rounded-lg border-l-4 border-brand-gold">
+                    <p class="text-brand-charcoal text-sm">
+                      <i class="fas fa-bullseye text-brand-gold mr-2"></i>
+                      <strong>Coherencia es Clave:</strong> Mantén una marca personal consistente y mensaje de valor claro en todas las plataformas.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Module 6: Maintenance -->
+      <section id="module6" class="module-section mb-16">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="font-serif text-4xl font-bold text-brand-charcoal mb-4">Módulo 6: Mantenimiento y Evolución</h2>
+            <div class="w-24 h-1 bg-brand-gold mx-auto mb-4"></div>
+            <p class="text-xl text-brand-sage max-w-3xl mx-auto">Mantén tu marca relevante y competitiva a largo plazo</p>
+          </div>
+
+          <!-- Section 6.1 -->
+          <div id="module6-1" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-shield-alt text-brand-gold mr-3"></i>
+                6.1 Monitoreo de Reputación Online
+              </h3>
+
+              <div class="mb-6">
+                <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片12.png" alt="Profesional monitoreando reputación digital" class="w-full h-64 object-cover rounded-lg" size="medium" aspect="wide" style="photo" query="profesional monitoreando reputacion digital" referrerpolicy="no-referrer"/>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">¿Qué Monitorear?</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    La percepción de tu marca se forma a través de múltiples canales. Es esencial estar al tanto de lo que se dice sobre ti.
+                  </p>
+
+                  <div class="space-y-3">
+                    <div class="flex items-center p-3 bg-blue-50 rounded-lg">
+                      <i class="fas fa-search text-blue-600 mr-3"></i>
+                      <span class="text-sm">Búsquedas de tu nombre en Google</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                      <i class="fas fa-star text-green-600 mr-3"></i>
+                      <span class="text-sm">Reseñas y comentarios en plataformas</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                      <i class="fas fa-comments text-purple-600 mr-3"></i>
+                      <span class="text-sm">Menciones en redes sociales</span>
+                    </div>
+                    <div class="flex items-center p-3 bg-orange-50 rounded-lg">
+                      <i class="fas fa-users text-orange-600 mr-3"></i>
+                      <span class="text-sm">Foros de la industria y comunidades</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Herramientas y Acciones</h4>
+
+                  <div class="space-y-4">
+                    <div class="p-4 bg-brand-cream/30 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Google Alerts</h5>
+                      <p class="text-xs text-brand-charcoal/70 mb-2">Configura alertas para tu nombre y nombre de tu negocio</p>
+                      <a href="#" class="text-brand-gold text-xs hover:underline">Configurar alertas →</a>
+                    </div>
+
+                    <div class="p-4 bg-brand-cream/30 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Respuesta a Críticas</h5>
+                      <p class="text-xs text-brand-charcoal/70">Aborda comentarios negativos de manera profesional y constructiva</p>
+                    </div>
+
+                    <div class="p-4 bg-brand-cream/30 rounded-lg">
+                      <h5 class="font-medium text-brand-charcoal text-sm mb-2">Protección de Marca</h5>
+                      <p class="text-xs text-brand-charcoal/70">Vigila suplantación de identidad o uso no autorizado de tu contenido</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-brand-charcoal text-white p-6 rounded-lg">
+                <h4 class="font-semibold text-brand-light-gold mb-4">Gestión de Crisis de Reputación</h4>
+                <div class="grid md:grid-cols-4 gap-4">
+                  <div class="text-center">
+                    <i class="fas fa-eye text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-sm">Detectar</h5>
+                    <p class="text-xs text-gray-300">Identifica problemas rápidamente</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-pause text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-sm">Evaluar</h5>
+                    <p class="text-xs text-gray-300">Analiza el impacto real</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-comments text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-sm">Responder</h5>
+                    <p class="text-xs text-gray-300">Reacción profesional y medida</p>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-chart-line text-2xl text-brand-gold mb-2"></i>
+                    <h5 class="font-medium text-sm">Aprender</h5>
+                    <p class="text-xs text-gray-300">Mejora procesos futuros</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 6.2 -->
+          <div id="module6-2" class="module-section mb-12">
+            <div class="bg-gradient-to-br from-brand-gold/10 to-brand-amber/10 rounded-xl p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-chart-bar text-brand-gold mr-3"></i>
+                6.2 Análisis de Métricas y Ajuste
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Métricas de LinkedIn</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    LinkedIn ofrece analíticas integradas para rastrear el rendimiento de tu perfil y contenido.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="flex justify-between items-center p-3 bg-brand-charcoal/5 rounded-lg">
+                      <div>
+                        <h5 class="font-medium text-brand-charcoal text-sm">Visitas al Perfil</h5>
+                        <p class="text-xs text-brand-charcoal/70">Quién visita tu perfil</p>
+                      </div>
+                      <i class="fas fa-user text-brand-gold"></i>
+                    </div>
+
+                    <div class="flex justify-between items-center p-3 bg-brand-charcoal/5 rounded-lg">
+                      <div>
+                        <h5 class="font-medium text-brand-charcoal text-sm">Alcance de Publicaciones</h5>
+                        <p class="text-xs text-brand-charcoal/70">Personas alcanzadas</p>
+                      </div>
+                      <i class="fas fa-broadcast-tower text-brand-gold"></i>
+                    </div>
+
+                    <div class="flex justify-between items-center p-3 bg-brand-charcoal/5 rounded-lg">
+                      <div>
+                        <h5 class="font-medium text-brand-charcoal text-sm">Engagement</h5>
+                        <p class="text-xs text-brand-charcoal/70">Likes, comentarios, compartidos</p>
+                      </div>
+                      <i class="fas fa-heart text-brand-gold"></i>
+                    </div>
+
+                    <div class="flex justify-between items-center p-3 bg-brand-charcoal/5 rounded-lg">
+                      <div>
+                        <h5 class="font-medium text-brand-charcoal text-sm">Demografía</h5>
+                        <p class="text-xs text-brand-charcoal/70">Industria, cargo, ubicación</p>
+                      </div>
+                      <i class="fas fa-users text-brand-gold"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Métricas de Conversión</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Más allá del engagement, rastrea métricas directamente relacionadas con tus objetivos de negocio.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                      <h5 class="font-medium text-green-800 text-sm mb-2">Solicitudes de Propuestas</h5>
+                      <p class="text-green-700 text-xs">Número de clientes que te contactan a través de LinkedIn</p>
+                    </div>
+
+                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                      <h5 class="font-medium text-blue-800 text-sm mb-2">Clientes Adquiridos</h5>
+                      <p class="text-blue-700 text-xs">Conversión real de conexiones a clientes</p>
+                    </div>
+
+                    <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
+                      <h5 class="font-medium text-purple-800 text-sm mb-2">Tráfico al Sitio Web</h5>
+                      <p class="text-purple-700 text-xs">Visitas dirigidas desde LinkedIn</p>
+                    </div>
+
+                    <div class="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400">
+                      <h5 class="font-medium text-orange-800 text-sm mb-2">ROI de Tiempo</h5>
+                      <p class="text-orange-700 text-xs">Valor generado vs. tiempo invertido</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg">
+                <h4 class="font-semibold text-brand-charcoal mb-4">Proceso de Optimización Continua</h4>
+                <div class="grid md:grid-cols-4 gap-4">
+                  <div class="text-center">
+                    <div class="bg-brand-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h5 class="font-medium text-brand-charcoal text-sm mb-1">Medir</h5>
+                    <p class="text-xs text-brand-charcoal/70">Recopila datos regularmente</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="bg-brand-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-search"></i>
+                    </div>
+                    <h5 class="font-medium text-brand-charcoal text-sm mb-1">Analizar</h5>
+                    <p class="text-xs text-brand-charcoal/70">Identifica patrones y oportunidades</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="bg-brand-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-cogs"></i>
+                    </div>
+                    <h5 class="font-medium text-brand-charcoal text-sm mb-1">Ajustar</h5>
+                    <p class="text-xs text-brand-charcoal/70">Modifica estrategia basada en datos</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="bg-brand-gold text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-redo"></i>
+                    </div>
+                    <h5 class="font-medium text-brand-charcoal text-sm mb-1">Repetir</h5>
+                    <p class="text-xs text-brand-charcoal/70">Ciclo continuo de mejora</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 6.3 -->
+          <div id="module6-3" class="module-section mb-12">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+              <h3 class="font-serif text-2xl font-semibold text-brand-charcoal mb-6 flex items-center">
+                <i class="fas fa-sync-alt text-brand-gold mr-3"></i>
+                6.3 Actualización Continua del Perfil
+              </h3>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 class="font-semibold text-brand-charcoal mb-4">Perfil Dinámico</h4>
+                  <p class="text-brand-charcoal/80 mb-4">
+                    Tu perfil de LinkedIn debe ser un reflejo dinámico de tu crecimiento profesional, no un documento estático.
+                  </p>
+
+                  <div class="space-y-3">
+                    <div class="flex items-start p-3 bg-brand-charcoal/5 rounded-lg">
+                      <i class="fas fa-calendar-check text-brand-gold mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-brand-charcoal text-sm">Actualización Regular</h5>
+                        <p class="text-xs text-brand-charcoal/70">Revisa cada pocos meses o con cambios significativos</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start p-3 bg-brand-charcoal/5 rounded-lg">
+                      <i class="fas fa-plus-circle text-brand-gold mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-brand-charcoal text-sm">Agregar Nuevos Proyectos</h5>
+                        <p class="text-xs text-brand-charcoal/70">Incluye logros y experiencia reciente</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start p-3 bg-brand-charcoal/5 rounded-lg">
+                      <i class="fas fa-star text-brand-gold mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-medium text-brand-charcoal text-sm">Nuevas Recomendaciones</h5>
+                        <p class="text-xs text-brand-charcoal/70">Solicita testimonios de clientes recientes</p>
+                      </div></div></div></div></div></div></div></div></section></div></body></html>

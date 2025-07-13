@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Transformaciones 2D en CSS</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      background-color: lightblue;
+      display: inline-block;
+      transition: transform 0.5s;
+    }
+
+    .translate:hover {
+      transform: translate(50px, 20px);
+    }
+
+    .rotate:hover {
+      transform: rotate(45deg);
+    }
+
+    .scale:hover {
+      transform: scale(1.5);
+    }
+
+    .scale-x:hover {
+      transform: scaleX(2);
+    }
+
+    .scale-y:hover {
+      transform: scaleY(2);
+    }
+
+    .skew:hover {
+      transform: skew(20deg, 10deg);
+    }
+
+    .skew-x:hover {
+      transform: skewX(30deg);
+    }
+
+    .skew-y:hover {
+      transform: skewY(30deg);
+    }
+
+    .matrix:hover {
+      /* matrix(scaleX, skewY, skewX, scaleY, translateX, translateY) */
+      transform: matrix(1, 0.3, 0.3, 1, 20, 20);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Transformaciones 2D con CSS (pasa el cursor)</h2>
+
+  <div class="box translate">translate</div>
+  <div class="box rotate">rotate</div>
+  <div class="box scale">scale</div>
+  <div class="box scale-x">scaleX</div>
+  <div class="box scale-y">scaleY</div>
+  <div class="box skew">skew</div>
+  <div class="box skew-x">skewX</div>
+  <div class="box skew-y">skewY</div>
+  <div class="box matrix">matrix</div>
+
+</body>
+</html>

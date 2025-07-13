@@ -1,0 +1,57 @@
+.div1{
+    width: 500px;
+    padding: 50px;
+    border: 1.5px solid rgb(232, 56, 56);
+    margin: 60px;
+    background-color: lightblue;
+    translate: 45px 45px;
+    rotate: 30deg;
+    scale: 1.0;
+    scale: 1.2;
+    stroke-width: 12px;
+    mask: 10deg 30deg;
+
+}
+.div2{
+    width: 350px;
+    padding: 40px;
+    border: 4px solid rgb(223, 199, 199);
+    margin: 60px;
+    background-color: lightgreen;
+     translate: 2px 3px;
+    rotate: 30deg;
+    scale: 1.0;
+    scale: 1.2;
+    stroke-width: 12px;
+    mask: 10deg 30deg;
+}
+.div3{
+    width: 350px;
+    padding: 50px;
+    border: 2.7px solid rgb(62, 60, 60);
+    margin: 60px;
+    background-color: lightcoral;
+     translate: 2px 3px;
+    rotate: 30deg;
+    scale: 1.0;
+    scale: 1.2;
+    stroke-width: 12px;
+    mask: 10deg 30deg;
+}
+.div4{
+    width: 500px;
+    padding: 60px;
+    border: 5px solid rgb(221, 189, 189);
+    margin: 60px;
+    background-color: lightgoldenrodyellow;
+     translate: 2px 3px;
+    rotate: 30deg;
+    scale: 1.0;
+    scale: 1.2;
+    stroke-width: 12px;
+    mask: 10deg 30deg;
+}
+body{
+    background-color: rgb(50, 47, 47);
+    font-family: Georgia, 'Times New Roman', Times, serif, Helvetica, sans-serif;
+}

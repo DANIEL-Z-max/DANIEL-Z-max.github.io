@@ -1,0 +1,1459 @@
+<!DOCTYPE html><html lang="es"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Automatización Integral de Videos de YouTube con n8n en Docker para Windows</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f766e;
+            --primary-light: #14b8a6;
+            --accent: #f59e0b;
+            --neutral: #374151;
+            --neutral-light: #f3f4f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+        
+        .serif {
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f766e 0%, #134e4a 50%, #1f2937 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            border-right: 1px solid #e2e8f0;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d1d5db, transparent);
+            margin: 4rem 0;
+        }
+        
+        .step-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        
+        .citation {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--primary);
+        }
+        
+        .citation:hover {
+            background: rgba(15, 118, 110, 0.1);
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-visual {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .workflow-diagram {
+            background: linear-gradient(45deg, #f0fdfa 0%, #ecfdf5 100%);
+            border: 2px solid #a7f3d0;
+        }
+        
+        @media (max-width: 1024px) {
+            .toc-fixed {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .toc-fixed.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        .toc-overlay {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .toc-overlay {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #hero .glass-effect {
+                padding: 1.5rem;
+            }
+            
+            #hero h1 {
+                font-size: 2rem;
+            }
+            
+            #hero img {
+                height: auto;
+            }
+        }
+    </style>
+  </head>
+
+  <body class="bg-gray-50">
+    <!-- Table of Contents -->
+    <nav class="toc-fixed">
+      <div class="mb-8">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Contenido</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#hero" class="text-gray-600 hover:text-teal-600 transition-colors">Introducción</a>
+          </li>
+          <li>
+            <a href="#setup" class="text-gray-600 hover:text-teal-600 transition-colors">1. Configuración del Entorno</a>
+            <ul class="ml-4 mt-2 space-y-1">
+              <li>
+                <a href="#docker-install" class="text-gray-500 hover:text-teal-600 transition-colors">1.1 Docker Desktop</a>
+              </li>
+              <li>
+                <a href="#n8n-image" class="text-gray-500 hover:text-teal-600 transition-colors">1.2 Imagen n8n</a>
+              </li>
+              <li>
+                <a href="#container-run" class="text-gray-500 hover:text-teal-600 transition-colors">1.3 Ejecución</a>
+              </li>
+              <li>
+                <a href="#server-config" class="text-gray-500 hover:text-teal-600 transition-colors">1.4 Servidor Local</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#workflow-design" class="text-gray-600 hover:text-teal-600 transition-colors">2. Diseño del Flujo</a>
+            <ul class="ml-4 mt-2 space-y-1">
+              <li>
+                <a href="#workflow-overview" class="text-gray-500 hover:text-teal-600 transition-colors">2.1 Visión General</a>
+              </li>
+              <li>
+                <a href="#credentials" class="text-gray-500 hover:text-teal-600 transition-colors">2.2 Credenciales</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#idea-management" class="text-gray-600 hover:text-teal-600 transition-colors">3. Gestión de Ideas</a>
+          </li>
+          <li>
+            <a href="#script-generation" class="text-gray-600 hover:text-teal-600 transition-colors">4. Generación de Guiones</a>
+          </li>
+          <li>
+            <a href="#video-creation" class="text-gray-600 hover:text-teal-600 transition-colors">5. Creación de Videos</a>
+          </li>
+          <li>
+            <a href="#youtube-publish" class="text-gray-600 hover:text-teal-600 transition-colors">6. Publicación en YouTube</a>
+          </li>
+          <li>
+            <a href="#execution" class="text-gray-600 hover:text-teal-600 transition-colors">7. Ejecución y Monitoreo</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Mobile TOC Toggle -->
+    <button class="lg:hidden fixed top-4 left-4 z-50 bg-teal-600 text-white p-3 rounded-full shadow-lg" onclick="toggleTOC()">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section id="hero" class="hero-gradient min-h-screen relative overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div class="relative z-10 container mx-auto px-6 py-20">
+          <div class="bento-grid max-w-7xl mx-auto">
+            <!-- Hero Content -->
+            <div class="hero-content">
+              <div class="glass-effect rounded-2xl p-8 mb-8">
+                <h1 class="serif text-5xl font-bold text-white mb-6 leading-tight">
+                  <em class="text-amber-300">Automatización Integral</em>
+                  <br/>
+                  de Videos de YouTube
+                </h1>
+                <p class="text-xl text-gray-200 mb-8 leading-relaxed">
+                  Guía completa para configurar un flujo de trabajo automatizado desde la generación de ideas hasta la publicación, utilizando n8n en Docker para Windows
+                </p>
+                <div class="flex flex-wrap gap-3">
+                  <span class="bg-teal-700 text-white px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fab fa-docker mr-2"></i>Docker
+                  </span>
+                  <span class="bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-robot mr-2"></i>n8n
+                  </span>
+                  <span class="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fab fa-youtube mr-2"></i>YouTube API
+                  </span>
+                  <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                    <i class="fas fa-brain mr-2"></i>OpenAI
+                  </span>
+                </div>
+              </div>
+
+              <!-- Key Highlights -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="glass-effect rounded-xl p-6 text-center">
+                  <i class="fas fa-cogs text-3xl text-teal-400 mb-3"></i>
+                  <h3 class="font-semibold text-white mb-2">Configuración Docker</h3>
+                  <p class="text-gray-300 text-sm">Instalación y configuración profesional de n8n en contenedores</p>
+                </div>
+                <div class="glass-effect rounded-xl p-6 text-center">
+                  <i class="fas fa-project-diagram text-3xl text-amber-400 mb-3"></i>
+                  <h3 class="font-semibold text-white mb-2">Flujo de Trabajo</h3>
+                  <p class="text-gray-300 text-sm">Integración de múltiples servicios desde Google Sheets hasta YouTube</p>
+                </div>
+                <div class="glass-effect rounded-xl p-6 text-center">
+                  <i class="fas fa-shield-alt text-3xl text-green-400 mb-3"></i>
+                  <h3 class="font-semibold text-white mb-2">Seguridad</h3>
+                  <p class="text-gray-300 text-sm">Configuración OAuth2 y gestión profesional de credenciales</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Visual -->
+            <div class="hero-visual">
+              <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片17.png" alt="Arquitectura de automatización de videos con n8n y Docker" class="w-full h-96 object-cover rounded-xl shadow-2xl" size="large" aspect="wide" query="n8n docker youtube automation workflow" referrerpolicy="no-referrer"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Article Content -->
+      <article class="container mx-auto px-6 py-16 max-w-5xl">
+
+        <!-- Introduction -->
+        <section class="mb-16">
+          <h2 class="serif text-3xl font-bold text-gray-900 mb-6">Flujo de Trabajo Automatizado para Creación y Publicación de Videos</h2>
+          <p class="text-lg text-gray-700 mb-6">
+            Para automatizar la creación y publicación de videos de YouTube con n8n en Docker en Windows, primero debes configurar Docker Desktop, descargar la imagen de n8n y ejecutar el contenedor con la persistencia de datos y la seguridad adecuadas. Luego, dentro de la interfaz web de n8n, diseñas un flujo de trabajo que integre servicios como Google Sheets para la gestión de ideas, OpenAI para la generación de guiones, JSON2Video para la creación de videos y, finalmente, el nodo de YouTube para la publicación, configurando las credenciales OAuth2 necesarias para cada servicio.
+          </p>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 1: Environment Setup -->
+        <section id="setup" class="mb-16">
+          <h2 class="serif text-4xl font-bold text-gray-900 mb-8">1. Configuración del Entorno n8n en Docker para Windows</h2>
+
+          <p class="text-lg text-gray-700 mb-8">
+            La configuración de un entorno local para n8n utilizando Docker en un sistema Windows es un proceso fundamental para ejecutar flujos de trabajo automatizados, como la creación y publicación de videos de YouTube. Este enfoque ofrece ventajas significativas en términos de aislamiento de dependencias, portabilidad y facilidad de despliegue.
+          </p>
+
+          <!-- Docker Installation -->
+          <div id="docker-install" class="step-card rounded-xl p-8 mb-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+              <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">1.1</span>
+              Instalación de Docker Desktop en Windows
+            </h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <p class="text-gray-700 mb-4">
+                  La instalación de <strong>Docker Desktop</strong> es el primer paso crítico para poder ejecutar n8n en un contenedor Docker dentro de un entorno Windows. Docker Desktop proporciona la plataforma necesaria para construir y ejecutar aplicaciones en contenedores, simplificando la gestión de dependencias y entornos de desarrollo.
+                </p>
+
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+                  <h4 class="font-semibold text-amber-800 mb-2 flex items-center">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    Requisitos Previos
+                  </h4>
+                  <ul class="text-amber-700 space-y-1">
+                    <li>• Windows 10 Pro/Enterprise (build 19041+) o Windows 11</li>
+                    <li>• Virtualización habilitada en BIOS/UEFI</li>
+                    <li>• WSL 2 como backend recomendado</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 rounded-lg p-6">
+                <h4 class="font-semibold text-gray-900 mb-3">Pasos de Instalación</h4>
+                <ol class="space-y-2 text-sm text-gray-700">
+                  <li>1. Descargar Docker Desktop desde <a href="https://docker.com" class="citation">docker.com</a>
+                  </li>
+                  <li>2. Ejecutar el instalador con privilegios de administrador</li>
+                  <li>3. Habilitar la opción &#34;Use WSL 2 based engine&#34;</li>
+                  <li>4. Reiniciar el equipo después de la instalación</li>
+                  <li>5. Verificar la instalación con
+                    <code class="bg-gray-200 px-2 py-1 rounded">docker --version</code>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mt-4">
+              <a href="https://dev.to/ralphsebastian/how-to-selfhost-n8n-in-cloudlocally-with-docker-4n04" class="citation">Referencia: How to selfhost n8n in cloud/locally with Docker</a> |
+              <a href="https://medium.com/@fayoded/setting-up-n8n-with-docker-and-ngrok-a-beginners-guide-8b76e7d5e661" class="citation">Setting up n8n with Docker and ngrok: A Beginner&#39;s Guide</a>
+            </p>
+          </div>
+
+          <!-- n8n Image Download -->
+          <div id="n8n-image" class="step-card rounded-xl p-8 mb-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+              <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">1.2</span>
+              Descarga de la Imagen de n8n
+            </h3>
+
+            <p class="text-gray-700 mb-6">
+              Una vez que Docker Desktop está instalado y funcionando correctamente en el sistema Windows, el siguiente paso es obtener la <strong>imagen oficial de n8n</strong> desde Docker Hub. n8n proporciona imágenes Docker oficiales que se pueden utilizar para desplegar la plataforma de automatización de flujos de trabajo.
+            </p>
+
+            <div class="code-block p-6 mb-6">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-green-400 font-medium">Comando para descargar la imagen oficial</span>
+                <button onclick="copyToClipboard(&#39;docker-pull&#39;)" class="text-gray-400 hover:text-white">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+              <pre id="docker-pull" class="text-sm"><code>docker pull docker.n8n.io/n8nio/n8n:latest</code></pre>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h4 class="font-semibold text-blue-800 mb-2 flex items-center">
+                <i class="fas fa-info-circle mr-2"></i>
+                Recomendación Oficial
+              </h4>
+              <p class="text-blue-700 text-sm">
+                La documentación oficial de n8n recomienda utilizar la imagen alojada en
+                <code>docker.n8n.io/n8nio/n8n</code> para asegurar la autenticidad y compatibilidad. Se desaconseja el uso de imágenes de terceros.
+                <a href="https://n8nhost.io/how-to-self-host-n8n-on-docker-a-step-by-step-guide/" class="citation">Referencia</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Container Execution -->
+          <div id="container-run" class="step-card rounded-xl p-8 mb-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+              <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">1.3</span>
+              Ejecución del Contenedor n8n
+            </h3>
+
+            <p class="text-gray-700 mb-6">
+              Con la imagen de n8n descargada en el sistema Windows, el siguiente paso es ejecutar un contenedor basado en esa imagen. Existen dos métodos principales para lanzar n8n con Docker: utilizando el comando
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <!-- Method 1: Docker Run -->
+              <div class="bg-gray-50 rounded-lg p-6">
+                <h4 class="font-semibold text-gray-900 mb-4 flex items-center">
+                  <i class="fas fa-terminal text-teal-600 mr-2"></i>
+                  Método 1: Docker Run
+                </h4>
+
+                <div class="code-block p-4 mb-4 text-sm">
+                  <pre><code>docker run -d --name n8n \
+  -p 5678:5678 \
+  -v n8n_data:/home/node/.n8n \
+  --restart=always \
+  docker.n8n.io/n8nio/n8n</code></pre>
+                </div>
+
+                <div class="space-y-2 text-sm text-gray-600">
+                  <div class="flex items-start">
+                    <span class="text-teal-600 mr-2">-d</span>
+                    <span>Ejecuta en segundo plano (daemon)</span>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="text-teal-600 mr-2">-p</span>
+                    <span>Mapeo de puertos host:contenedor</span>
+                  </div>
+                  <div class="flex items-start">
+                    <span class="text-teal-600 mr-2">-v</span>
+                    <span>Volumen para persistencia de datos</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Method 2: Docker Compose -->
+              <div class="bg-gray-50 rounded-lg p-6">
+                <h4 class="font-semibold text-gray-900 mb-4 flex items-center">
+                  <i class="fas fa-file-code text-amber-600 mr-2"></i>
+                  Método 2: Docker Compose
+                </h4>
+
+                <p class="text-sm text-gray-600 mb-4">Crear archivo
+                  <code>docker-compose.yml</code>:
+                </p>
+
+                <div class="code-block p-4 text-xs">
+                  <pre><code>version: &#39;3.8&#39;
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: n8n
+    restart: always
+    ports:
+      - &#34;5678:5678&#34;
+    volumes:
+      - n8n_data:/home/node/.n8n
+volumes:
+  n8n_data:</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mt-4">
+              <a href="https://www.oneclickitsolution.com/centerofexcellence/aiml/n8n-docker-installation-guide" class="citation">Referencia: n8n Docker Installation Guide</a> |
+              <a href="https://dev.to/rajeshkumaryadavdotcom/how-to-run-n8n-on-localhost-340e" class="citation">How to run n8n on localhost</a>
+            </p>
+          </div>
+
+          <!-- Server Configuration -->
+          <div id="server-config" class="step-card rounded-xl p-8 mb-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+              <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">1.4</span>
+              Configuración del Servidor Local para n8n (Acceso y Seguridad)
+            </h3>
+
+            <p class="text-gray-700 mb-6">
+              Una vez que el contenedor n8n está en funcionamiento, es crucial configurar el servidor local para garantizar un acceso seguro y un funcionamiento adecuado, especialmente si se planea acceder a él desde fuera de la máquina local o si se manejan datos sensibles.
+            </p>
+
+            <!-- Security Configuration -->
+            <div class="workflow-diagram rounded-xl p-6 mb-6">
+              <h4 class="font-semibold text-gray-900 mb-4">Configuración de Seguridad Recomendada</h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white rounded-lg p-4 border">
+                  <div class="text-center mb-3">
+                    <i class="fas fa-shield-alt text-2xl text-green-600"></i>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2 text-center">Autenticación Básica</h5>
+                  <div class="code-block p-3 text-xs">
+                    <pre><code>N8N_BASIC_AUTH_ACTIVE=true
+N8N_BASIC_AUTH_USER=admin
+N8N_BASIC_AUTH_PASSWORD=secure</code></pre>
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 border">
+                  <div class="text-center mb-3">
+                    <i class="fas fa-globe text-2xl text-blue-600"></i>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2 text-center">Configuración de Red</h5>
+                  <div class="code-block p-3 text-xs">
+                    <pre><code>N8N_HOST=0.0.0.0
+N8N_PORT=5678
+WEBHOOK_URL=http://host:5678</code></pre>
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 border">
+                  <div class="text-center mb-3">
+                    <i class="fas fa-database text-2xl text-purple-600"></i>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2 text-center">Persistencia</h5>
+                  <div class="code-block p-3 text-xs">
+                    <pre><code>N8N_DEFAULT_BINARY_DATA_MODE=filesystem
+GENERIC_TIMEZONE=America/New_York</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Advanced Configuration -->
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+              <h4 class="font-semibold text-amber-800 mb-4 flex items-center">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                Configuración Avanzada para Producción
+              </h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h5 class="font-medium text-amber-800 mb-2">SSL/TLS (HTTPS)</h5>
+                  <p class="text-amber-700 text-sm mb-3">
+                    Para cualquier despliegue accesible desde Internet, es fundamental utilizar HTTPS mediante un proxy inverso (Nginx, Caddy, Traefik) con terminación SSL.
+                  </p>
+                </div>
+
+                <div>
+                  <h5 class="font-medium text-amber-800 mb-2">Acceso Externo</h5>
+                  <p class="text-amber-700 text-sm mb-3">
+                    Para webhooks y activaciones externas, utilizar servicios como ngrok, Cloudflare Tunnel o exponer de forma segura mediante VPN.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mt-4">
+              <a href="https://thewebsiteengineer.com/blog/how-to-install-n8n-on-a-local-server-and-access-it-securely-from-anywhere/" class="citation">Referencia: Secure n8n Installation Guide</a> |
+              <a href="https://www.infyways.com/setup-n8n-locally-docker-guide/" class="citation">Setup n8n locally Docker Guide</a>
+            </p>
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 2: Workflow Design -->
+        <section id="workflow-design" class="mb-16">
+          <h2 class="serif text-4xl font-bold text-gray-900 mb-8">2. Diseño del Flujo de Trabajo en n8n</h2>
+
+          <!-- Workflow Overview -->
+          <div id="workflow-overview" class="step-card rounded-xl p-8 mb-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+              <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">2.1</span>
+              Visión General del Flujo de Trabajo Automatizado
+            </h3>
+
+            <p class="text-gray-700 mb-6">
+              La creación de un flujo de trabajo automatizado completo para la generación y publicación de videos de YouTube utilizando n8n implica una secuencia de pasos que van desde la concepción de la idea hasta la subida del video a la plataforma. n8n actúa como el orquestador central, conectando diferentes servicios y herramientas a través de sus nodos.
+            </p>
+
+            <!-- Workflow Diagram -->
+            <div class="workflow-diagram rounded-xl p-8 mb-6">
+              <h4 class="font-semibold text-gray-900 mb-6 text-center">Flujo de Trabajo Completo</h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="text-center">
+                  <div class="bg-blue-500 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-lightbulb text-xl"></i>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2">Generación de Ideas</h5>
+                  <p class="text-sm text-gray-600">Google Sheets → Extracción de temas y conceptos</p>
+                </div>
+
+                <div class="text-center">
+                  <div class="bg-purple-500 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-file-alt text-xl"></i>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2">Creación de Guiones</h5>
+                  <p class="text-sm text-gray-600">OpenAI → Transformación en guiones estructurados</p>
+                </div>
+
+                <div class="text-center">
+                  <div class="bg-green-500 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-video text-xl"></i>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2">Producción de Video</h5>
+                  <p class="text-sm text-gray-600">JSON2Video → Ensamblaje multimedia</p>
+                </div>
+
+                <div class="text-center">
+                  <div class="bg-red-500 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                    <i class="fab fa-youtube text-xl"></i>
+                  </div>
+                  <h5 class="font-semibold text-gray-900 mb-2">Publicación</h5>
+                  <p class="text-sm text-gray-600">YouTube API → Subida automatizada</p>
+                </div>
+              </div>
+
+              <div class="flex justify-center mt-6">
+                <div class="flex items-center space-x-2">
+                  <div class="w-8 h-0.5 bg-gray-300"></div>
+                  <i class="fas fa-arrow-right text-gray-400"></i>
+                  <div class="w-8 h-0.5 bg-gray-300"></div>
+                  <i class="fas fa-arrow-right text-gray-400"></i>
+                  <div class="w-8 h-0.5 bg-gray-300"></div>
+                  <i class="fas fa-arrow-right text-gray-400"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Existing Workflow Templates -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+              <h4 class="font-semibold text-blue-800 mb-4 flex items-center">
+                <i class="fas fa-templates mr-2"></i>
+                Plantillas de Flujo de Trabajo Existentes
+              </h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-lg p-4 border">
+                  <h5 class="font-medium text-gray-900 mb-2">Automated Faceless YouTube Video Generator</h5>
+                  <p class="text-sm text-gray-600 mb-2">Utiliza Leonardo AI y Creatomate para generación de imágenes y montaje de video.</p>
+                  <a href="https://n8n.io/workflows/2971-automated-faceless-youtube-video-generator-using-leonardo-ai-and-creatomate/" class="citation text-xs">Ver plantilla</a>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 border">
+                  <h5 class="font-medium text-gray-900 mb-2">AI Viral Videos with Seedance</h5>
+                  <p class="text-sm text-gray-600 mb-2">Generación de videos virales con Seedance AI y publicación en múltiples plataformas.</p>
+                  <a href="https://n8n.io/workflows/5338-generate-ai-viral-videos-with-seedance-and-upload-to-tiktok-youtube-and-instagram/" class="citation text-xs">Ver plantilla</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Credentials Configuration -->
+          <div id="credentials" class="step-card rounded-xl p-8 mb-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+              <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">2.2</span>
+              Configuración de Credenciales en n8n
+            </h3>
+
+            <p class="text-gray-700 mb-6">
+              Para que n8n pueda interactuar con los diversos servicios involucrados en el flujo de trabajo automatizado de creación de videos de YouTube, es imprescindible <strong>configurar las credenciales de acceso para cada uno de ellos dentro de la interfaz de n8n</strong>.
+            </p>
+
+            <!-- Credentials Table -->
+            <div class="overflow-x-auto mb-6">
+              <table class="w-full bg-white rounded-lg shadow-sm border">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Servicio</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo de Credencial</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Configuración Requerida</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Uso en el Flujo</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Google Sheets</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">OAuth 2.0</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Consola de Desarrolladores Google</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Lectura/Escritura de hojas</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">OpenAI</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">API Key</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Panel de control OpenAI</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Generación de guiones</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">JSON2Video</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">API Key</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Panel de control JSON2Video</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Renderizado de videos</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">YouTube</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">OAuth 2.0</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Google Developers Console</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">Subida de videos</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- OAuth2 Configuration -->
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+              <h4 class="font-semibold text-yellow-800 mb-4 flex items-center">
+                <i class="fas fa-key mr-2"></i>
+                Configuración de OAuth2 para YouTube
+              </h4>
+
+              <ol class="space-y-3 text-sm text-yellow-700">
+                <li><strong>1. Crear Proyecto:</strong> En Google Developers Console, crear un nuevo proyecto o seleccionar uno existente.</li>
+                <li><strong>2. Habilitar API:</strong> Habilitar YouTube Data API v3 para el proyecto.</li>
+                <li><strong>3. Crear Credenciales:</strong> Generar credenciales OAuth 2.0 con los scopes necesarios:
+                  <code>https://www.googleapis.com/auth/youtube.upload</code>
+                </li>
+                <li><strong>4. Configurar URI:</strong> Añadir URI de redireccionamiento:
+                  <code>http://localhost:5678/rest/oauth2-credential/callback</code>
+                </li>
+              </ol>
+
+              <p class="text-gray-600 text-sm mt-4">
+                <a href="https://community.n8n.io/t/how-can-i-add-videos-via-n8n-to-youtube/20311" class="citation">Referencia: YouTube OAuth2 Configuration</a> |
+                <a href="https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.youtube/" class="citation">YouTube Node Documentation</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 3: Idea Management -->
+        <section id="idea-management" class="mb-16">
+          <h2 class="serif text-4xl font-bold text-gray-900 mb-8">3. Gestión de Ideas y Contenido con Google Sheets</h2>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="step-card rounded-xl p-8">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">3.1</span>
+                Creación de Hoja de Cálculo
+              </h3>
+
+              <p class="text-gray-700 mb-4">
+                El primer paso en la automatización de la creación de videos a menudo implica la <strong>gestión de ideas y contenido fuente</strong>. Una forma sencilla y efectiva de hacerlo es utilizando Google Sheets.
+              </p>
+
+              <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                <h4 class="font-medium text-gray-900 mb-2">Estructura Recomendada</h4>
+                <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                  <div>• Cita/Contenido</div>
+                  <div>• Autor/Fuente</div>
+                  <div>• Tema/Categoría</div>
+                  <div>• Estado</div>
+                  <div>• URL YouTube</div>
+                  <div>• Fecha Creación</div>
+                </div>
+              </div>
+
+              <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片20.png" alt="Ejemplo de hoja de cálculo de Google Sheets para gestión de ideas de videos de YouTube" class="w-full h-48 object-cover rounded-lg" size="small" aspect="wide" style="photo" query="google sheets youtube video ideas" referrerpolicy="no-referrer"/>
+            </div>
+
+            <div class="step-card rounded-xl p-8">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">3.2</span>
+                Configuración del Nodo Google Sheets
+              </h3>
+
+              <p class="text-gray-700 mb-4">
+                Una vez que la hoja de cálculo de Google Sheets está lista y contiene las ideas o el contenido para los videos, el siguiente paso es configurar el <strong>nodo &#34;Google Sheets&#34; en n8n</strong> para que pueda leer esta información.
+              </p>
+
+              <div class="space-y-4">
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 class="font-medium text-blue-800 mb-2">Pasos de Configuración</h4>
+                  <ol class="space-y-1 text-sm text-blue-700">
+                    <li>1. Seleccionar credenciales OAuth2 preconfiguradas</li>
+                    <li>2. Especificar ID de hoja de cálculo y hoja de trabajo</li>
+                    <li>3. Configurar operación &#34;Read Rows&#34;</li>
+                    <li>4. Definir filtros (ej: Estado = &#34;Pendiente&#34;)</li>
+                    <li>5. Mapear columnas a campos de salida</li>
+                  </ol>
+                </div>
+
+                <div class="code-block p-4 text-sm">
+                  <div class="text-green-400 mb-2">Ejemplo de Expresión:</div>
+                  <pre><code>{{ $json[&#39;Cita&#39;] }} - {{ $json[&#39;Autor&#39;] }}</code></pre>
+                </div>
+              </div>
+
+              <p class="text-gray-600 text-sm mt-4">
+                <a href="https://n8n.io/workflows/3328-automatically-create-and-upload-youtube-videos-with-quotes-in-thai-using-ffmpeg/" class="citation">Referencia: Automatically Create and Upload YouTube Videos</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 4: Script Generation -->
+        <section id="script-generation" class="mb-16">
+          <h2 class="serif text-4xl font-bold text-gray-900 mb-8">4. Generación de Guiones con OpenAI</h2>
+
+          <div class="step-card rounded-xl p-8 mb-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+              <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">4.1</span>
+              Configuración del Nodo OpenAI
+            </h3>
+
+            <p class="text-gray-700 mb-6">
+              Para automatizar la generación de guiones, títulos, descripciones u otro contenido textual para tus videos de YouTube, puedes utilizar el <strong>nodo &#34;OpenAI&#34; en n8n</strong>. Antes de poder usar este nodo, es esencial haber configurado las credenciales de OpenAI en n8n.
+            </p>
+
+            <!-- OpenAI Configuration -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-4">Parámetros Clave</h4>
+
+                <div class="space-y-4">
+                  <div class="bg-white border rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="font-medium text-gray-900">Modelo</span>
+                      <span class="text-sm text-gray-500">GPT-4, GPT-3.5-turbo</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Selecciona el modelo de lenguaje adecuado para la tarea</p>
+                  </div>
+
+                  <div class="bg-white border rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="font-medium text-gray-900">Temperature</span>
+                      <span class="text-sm text-gray-500">0.7 - 1.0</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Controla la creatividad vs. coherencia</p>
+                  </div>
+
+                  <div class="bg-white border rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="font-medium text-gray-900">Max Tokens</span>
+                      <span class="text-sm text-gray-500">1500-2000</span>
+                    </div>
+                    <p class="text-sm text-gray-600">Limita la longitud de la respuesta</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-4">Ejemplo de Prompt</h4>
+
+                <div class="bg-gray-50 rounded-lg p-4 border">
+                  <div class="code-block p-4 text-sm mb-4">
+                    <pre><code>{
+  &#34;role&#34;: &#34;system&#34;, 
+  &#34;content&#34;: &#34;Eres un experto creador de contenido de YouTube especializado en tutoriales de tecnología.&#34;
+}</code></pre>
+                  </div>
+
+                  <div class="code-block p-4 text-sm">
+                    <pre><code>{
+  &#34;role&#34;: &#34;user&#34;, 
+  &#34;content&#34;: &#34;Escribe un guion para un video de YouTube de 5 minutos sobre el tema: {{ $node[&#39;Google Sheets&#39;].json[&#39;Idea&#39;] }}. El guion debe incluir introducción, desarrollo y conclusión.&#34;
+}</code></pre>
+                  </div>
+                </div>
+
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
+                  <h5 class="font-medium text-green-800 mb-2">Mejores Prácticas</h5>
+                  <ul class="text-sm text-green-700 space-y-1">
+                    <li>• Proporcionar contexto claro y específico</li>
+                    <li>• Definir estructura y formato esperado</li>
+                    <li>• Especificar tono y estilo deseado</li>
+                    <li>• Incluir ejemplos cuando sea posible</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card rounded-xl p-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+              <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">4.2</span>
+              Solicitud de Generación de Guiones
+            </h3>
+
+            <p class="text-gray-700 mb-6">
+              Una vez que el nodo &#34;OpenAI&#34; está configurado con las credenciales, el modelo y los parámetros deseados, el siguiente paso es <strong>definir la solicitud (prompt) que se enviará a OpenAI para generar el guion</strong>. El prompt es la instrucción o el contexto que le das al modelo para guiar su generación.
+            </p>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+              <h4 class="font-semibold text-blue-800 mb-4">Estructura de Prompt Efectiva</h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h5 class="font-medium text-blue-700 mb-3">Componentes Esenciales</h5>
+                  <ul class="space-y-2 text-sm text-blue-600">
+                    <li class="flex items-start">
+                      <i class="fas fa-user-tie text-blue-500 mr-2 mt-1"></i>
+                      <span><strong>Rol/Contexto:</strong> Define la expertise del modelo</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-target text-blue-500 mr-2 mt-1"></i>
+                      <span><strong>Objetivo:</strong> Tarea específica a realizar</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-sitemap text-blue-500 mr-2 mt-1"></i>
+                      <span><strong>Estructura:</strong> Formato y secciones requeridas</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-palette text-blue-500 mr-2 mt-1"></i>
+                      <span><strong>Tono/Estilo:</strong> Características del lenguaje</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h5 class="font-medium text-blue-700 mb-3">Variables Dinámicas</h5>
+                  <div class="code-block p-4 text-sm">
+                    <pre><code>// Usar datos de nodos anteriores
+{{ $node[&#39;Google Sheets&#39;].json[&#39;Idea&#39;] }}
+
+// Insertar contenido específico
+{{ $json[&#39;titulo&#39;] }}
+
+// Referenciar múltiples campos
+{{ $node[&#39;OpenAI&#39;].json[&#39;guion&#39;] }}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-gray-600 text-sm mt-4">
+              <a href="https://n8n.io/workflows/2971-automated-faceless-youtube-video-generator-using-leonardo-ai-and-creatomate/" class="citation">Referencia: Automated Faceless YouTube Video Generator</a> |
+              <a href="https://n8n.io/workflows/5338-generate-ai-viral-videos-with-seedance-and-upload-to-tiktok-youtube-and-instagram/" class="citation">AI Viral Videos with Seedance</a>
+            </p>
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 5: Video Creation -->
+        <section id="video-creation" class="mb-16">
+          <h2 class="serif text-4xl font-bold text-gray-900 mb-8">5. Creación de Videos con JSON2Video</h2>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="step-card rounded-xl p-8">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">5.1</span>
+                Configuración del Nodo JSON2Video
+              </h3>
+
+              <p class="text-gray-700 mb-4">
+                Para automatizar la creación de videos utilizando el servicio <strong>JSON2Video</strong>, primero debes asegurarte de tener una cuenta en JSON2Video y haber generado una <strong>clave API</strong> desde tu panel de control.
+              </p>
+
+              <div class="space-y-4">
+                <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                  <h4 class="font-medium text-purple-800 mb-3 flex items-center">
+                    <i class="fas fa-cog mr-2"></i>
+                    Pasos de Configuración
+                  </h4>
+                  <ol class="space-y-2 text-sm text-purple-700">
+                    <li>1. Crear cuenta en JSON2Video y generar API Key</li>
+                    <li>2. Configurar credencial JSON2Video en n8n</li>
+                    <li>3. Crear plantilla de video en JSON2Video</li>
+                    <li>4. Identificar elementos dinámicos en la plantilla</li>
+                    <li>5. Mapear datos del flujo a la estructura JSON</li>
+                  </ol>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-4 border">
+                  <h4 class="font-medium text-gray-900 mb-2">Operaciones Disponibles</h4>
+                  <div class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                    <div>• Render Template</div>
+                    <div>• Get Template</div>
+                    <div>• Create Video</div>
+                    <div>• Get Status</div>
+                  </div>
+                </div>
+              </div>
+
+              <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片8.png" alt="Interfaz de usuario de JSON2Video mostrando el editor de plantillas de video" class="w-full h-40 object-cover rounded-lg mt-4" size="small" aspect="wide" style="photo" query="JSON2Video editor de plantillas" referrerpolicy="no-referrer"/>
+            </div>
+
+            <div class="step-card rounded-xl p-8">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">5.2</span>
+                Envío de Guiones para Generación de Videos
+              </h3>
+
+              <p class="text-gray-700 mb-4">
+                Una vez que el nodo &#34;JSON2Video&#34; está configurado con las credenciales correctas y se ha seleccionado la plantilla de video adecuada, el siguiente paso es <strong>enviar los datos necesarios, incluido el guion, a JSON2Video para que genere el video</strong>.
+              </p>
+
+              <div class="space-y-4">
+                <div class="code-block p-4 text-sm">
+                  <div class="text-green-400 mb-2">Payload JSON de Ejemplo:</div>
+                  <pre><code>{
+  &#34;template_id&#34;: &#34;TEMPLATE_ID&#34;,
+  &#34;modifications&#34;: {
+    &#34;titulo&#34;: &#34;{{ $node[&#39;Google Sheets&#39;].json[&#39;Titulo&#39;] }}&#34;,
+    &#34;guion&#34;: &#34;{{ $node[&#39;OpenAI&#39;].json[&#39;guion_generado&#39;] }}&#34;,
+    &#34;imagen_fondo&#34;: &#34;{{ $node[&#39;LeonardoAI&#39;].json[&#39;imagen_url&#39;] }}&#34;,
+    &#34;musica&#34;: &#34;{{ $node[&#39;EpidemicSound&#39;].json[&#39;track_url&#39;] }}&#34;
+  }
+}</code></pre>
+                </div>
+
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <h4 class="font-medium text-green-800 mb-2 flex items-center">
+                    <i class="fas fa-lightbulb mr-2"></i>
+                    Mejores Prácticas
+                  </h4>
+                  <ul class="text-sm text-green-700 space-y-1">
+                    <li>• Validar estructura JSON antes de enviar</li>
+                    <li>• Manejar errores de API con nodos de control</li>
+                    <li>• Implementar reintentos para fallos temporales</li>
+                    <li>• Almacenar job_id para seguimiento</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Response Handling -->
+              <div class="mt-6 bg-gray-50 rounded-lg p-4 border">
+                <h4 class="font-medium text-gray-900 mb-3">Manejo de Respuestas</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-gray-600">
+                  <div class="text-center">
+                    <div class="bg-blue-100 rounded-lg p-3 mb-2">
+                      <i class="fas fa-clock text-blue-600"></i>
+                    </div>
+                    <div><strong>Job ID</strong></div>
+                    <div class="text-xs">Identificador único</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="bg-yellow-100 rounded-lg p-3 mb-2">
+                      <i class="fas fa-spinner text-yellow-600"></i>
+                    </div>
+                    <div><strong>Status</strong></div>
+                    <div class="text-xs">En progreso/Completo</div>
+                  </div>
+                  <div class="text-center">
+                    <div class="bg-green-100 rounded-lg p-3 mb-2">
+                      <i class="fas fa-link text-green-600"></i>
+                    </div>
+                    <div><strong>Video URL</strong></div>
+                    <div class="text-xs">Enlace de descarga</div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="text-gray-600 text-sm mt-4">
+                <a href="https://json2video.com/video-automation/n8n/partner-tutorials/nate-top10-videos.html" class="citation">Referencia: JSON2Video n8n Integration Tutorial</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 6: YouTube Publishing -->
+        <section id="youtube-publish" class="mb-16">
+          <h2 class="serif text-4xl font-bold text-gray-900 mb-8">6. Publicación en YouTube</h2>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="step-card rounded-xl p-8">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">6.1</span>
+                Configuración del Nodo YouTube (OAuth2)
+              </h3>
+
+              <p class="text-gray-700 mb-4">
+                La publicación automatizada de videos en YouTube a través de n8n requiere una <strong>configuración adecuada de las credenciales de la API de YouTube, específicamente utilizando OAuth2</strong>. Este proceso implica la creación de un proyecto en la Google Developers Console.
+              </p>
+
+              <!-- OAuth2 Setup -->
+              <div class="space-y-4">
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <h4 class="font-semibold text-red-800 mb-3 flex items-center">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    Requisitos de OAuth2
+                  </h4>
+                  <div class="space-y-2 text-sm text-red-700">
+                    <div class="flex items-start">
+                      <i class="fas fa-check text-red-500 mr-2 mt-1"></i>
+                      <span>Proyecto en Google Cloud Console</span>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-check text-red-500 mr-2 mt-1"></i>
+                      <span>YouTube Data API v3 habilitada</span>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-check text-red-500 mr-2 mt-1"></i>
+                      <span>Credenciales OAuth2 con scopes adecuados</span>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-check text-red-500 mr-2 mt-1"></i>
+                      <span>URI de redireccionamiento configurada</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="code-block p-4 text-sm">
+                  <div class="text-yellow-400 mb-2">Scopes Requeridos:</div>
+                  <pre><code>https://www.googleapis.com/auth/youtube.upload
+https://www.googleapis.com/auth/youtube</code></pre>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 class="font-medium text-blue-800 mb-2">URI de Redireccionamiento</h4>
+                  <p class="text-sm text-blue-700 mb-2">
+                    <code>http://localhost:5678/rest/oauth2-credential/callback</code>
+                  </p>
+                  <p class="text-xs text-blue-600">
+                    Para instancia local de n8n. Ajustar según configuración.
+                  </p>
+                </div>
+              </div>
+
+              <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片16.png" alt="Interfaz de Google Cloud Console mostrando la configuración de credenciales OAuth" class="w-full h-40 object-cover rounded-lg mt-4" size="medium" aspect="wide" style="photo" query="google cloud console oauth configuration" referrerpolicy="no-referrer"/>
+            </div>
+
+            <div class="step-card rounded-xl p-8">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">6.2</span>
+                Subida Automatizada del Video
+              </h3>
+
+              <p class="text-gray-700 mb-4">
+                Una vez que el nodo &#34;YouTube&#34; en n8n está correctamente configurado con las credenciales de OAuth2 y el video final ha sido generado, el siguiente paso es la <strong>subida automatizada del video a la plataforma</strong>.
+              </p>
+
+              <!-- Upload Configuration -->
+              <div class="space-y-4">
+                <div class="bg-gray-50 rounded-lg p-4 border">
+                  <h4 class="font-medium text-gray-900 mb-3">Parámetros de Subida</h4>
+                  <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-medium text-gray-700">Archivo de Video</span>
+                      <span class="text-xs text-gray-500">Binario/URL</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-medium text-gray-700">Título</span>
+                      <span class="text-xs text-gray-500">Dinámico</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-medium text-gray-700">Descripción</span>
+                      <span class="text-xs text-gray-500">Generada por IA</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-medium text-gray-700">Etiquetas</span>
+                      <span class="text-xs text-gray-500">Relevantes</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-medium text-gray-700">Privacidad</span>
+                      <span class="text-xs text-gray-500">Público/No listado</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="code-block p-4 text-sm">
+                  <div class="text-green-400 mb-2">Ejemplo de Configuración:</div>
+                  <pre><code>{
+  &#34;operation&#34;: &#34;upload&#34;,
+  &#34;title&#34;: &#34;{{ $node[&#39;Google Sheets&#39;].json[&#39;Titulo&#39;] }}&#34;,
+  &#34;description&#34;: &#34;{{ $node[&#39;OpenAI&#39;].json[&#39;descripcion&#39;] }}&#34;,
+  &#34;tags&#34;: [&#34;automatización&#34;, &#34;n8n&#34;, &#34;youtube&#34;],
+  &#34;privacyStatus&#34;: &#34;private&#34;,
+  &#34;categoryId&#34;: &#34;22&#34; // Educación
+}</code></pre>
+                </div>
+              </div>
+
+              <!-- Handling Large Files -->
+              <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <h4 class="font-semibold text-yellow-800 mb-3 flex items-center">
+                  <i class="fas fa-file-video mr-2"></i>
+                  Manejo de Archivos Grandes
+                </h4>
+                <p class="text-sm text-yellow-700 mb-3">
+                  Para videos grandes, es crucial configurar la variable de entorno:
+                </p>
+                <div class="code-block p-3 text-sm">
+                  <pre><code>N8N_DEFAULT_BINARY_DATA_MODE=filesystem</code></pre>
+                </div>
+                <p class="text-xs text-yellow-600 mt-2">
+                  Esto evita problemas de memoria al almacenar archivos binarios grandes en disco en lugar de RAM.
+                </p>
+              </div>
+
+              <p class="text-gray-600 text-sm mt-4">
+                <a href="https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.youtube/" class="citation">Referencia: YouTube Node Documentation</a> |
+                <a href="https://community.n8n.io/t/handling-large-video-files-in-n8n-workflow/121280" class="citation">Handling Large Video Files</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 7: Execution and Monitoring -->
+        <section id="execution" class="mb-16">
+          <h2 class="serif text-4xl font-bold text-gray-900 mb-8">7. Ejecución y Monitoreo del Flujo de Trabajo</h2>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="step-card rounded-xl p-8">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">7.1</span>
+                Activación del Flujo de Trabajo
+              </h3>
+
+              <p class="text-gray-700 mb-4">
+                Una vez que el flujo de trabajo de n8n está completamente diseñado y todas las credenciales y configuraciones de nodos están en su lugar, el siguiente paso es <strong>activarlo y ponerlo en marcha</strong>. n8n ofrece varias formas de activar un flujo de trabajo.
+              </p>
+
+              <!-- Trigger Types -->
+              <div class="space-y-4">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <h4 class="font-semibold text-green-800 mb-3 flex items-center">
+                    <i class="fas fa-clock mr-2"></i>
+                    Schedule Trigger
+                  </h4>
+                  <p class="text-sm text-green-700 mb-3">
+                    Permite ejecutar el flujo de trabajo en intervalos regulares usando expresiones cron.
+                  </p>
+                  <div class="code-block p-3 text-xs">
+                    <pre><code>// Ejecutar diariamente a las 10:00 AM
+0 10 * * *</code></pre>
+                  </div>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 class="font-semibold text-blue-800 mb-3 flex items-center">
+                    <i class="fas fa-hand-pointer mr-2"></i>
+                    Manual Trigger
+                  </h4>
+                  <p class="text-sm text-blue-700">
+                    Permite ejecutar el flujo de trabajo manualmente desde la interfaz de usuario de n8n. Ideal para pruebas y procesos que no requieren una programación fija.
+                  </p>
+                </div>
+
+                <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                  <h4 class="font-semibold text-purple-800 mb-3 flex items-center">
+                    <i class="fas fa-satellite-dish mr-2"></i>
+                    Webhook Trigger
+                  </h4>
+                  <p class="text-sm text-purple-700">
+                    Permite que el flujo de trabajo se active mediante una solicitud HTTP externa. Útil para integraciones con otros sistemas.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-card rounded-xl p-8">
+              <h3 class="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
+                <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">7.2</span>
+                Seguimiento del Progreso y Detección de Errores
+              </h3>
+
+              <p class="text-gray-700 mb-4">
+                Una vez que el flujo de trabajo de n8n está en ejecución, es crucial <strong>monitorear su progreso y detectar cualquier error</strong> que pueda ocurrir. n8n proporciona varias herramientas para facilitar este seguimiento.
+              </p>
+
+              <!-- Monitoring Tools -->
+              <div class="space-y-4">
+                <div class="bg-gray-50 rounded-lg p-4 border">
+                  <h4 class="font-medium text-gray-900 mb-3 flex items-center">
+                    <i class="fas fa-eye mr-2"></i>
+                    Visualización en Tiempo Real
+                  </h4>
+                  <p class="text-sm text-gray-600 mb-3">
+                    La interfaz de usuario de n8n muestra el estado de cada nodo durante la ejecución con colores que indican:
+                  </p>
+                  <div class="grid grid-cols-3 gap-2 text-xs">
+                    <div class="text-center">
+                      <div class="w-4 h-4 bg-green-500 rounded-full mx-auto mb-1"></div>
+                      <span class="text-green-700">Completado</span>
+                    </div>
+                    <div class="text-center">
+                      <div class="w-4 h-4 bg-yellow-500 rounded-full mx-auto mb-1"></div>
+                      <span class="text-yellow-700">En Progreso</span>
+                    </div>
+                    <div class="text-center">
+                      <div class="w-4 h-4 bg-red-500 rounded-full mx-auto mb-1"></div>
+                      <span class="text-red-700">Fallido</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 class="font-medium text-blue-800 mb-3 flex items-center">
+                    <i class="fas fa-history mr-2"></i>
+                    Registro de Ejecuciones
+                  </h4>
+                  <p class="text-sm text-blue-700 mb-3">
+                    n8n mantiene un historial completo de todas las ejecuciones de flujos de trabajo, incluyendo:
+                  </p>
+                  <ul class="text-sm text-blue-600 space-y-1">
+                    <li>• Fecha y hora de ejecución</li>
+                    <li>• Estado (éxito/fallo)</li>
+                    <li>• Tiempo de ejecución</li>
+                    <li>• Mensajes de error detallados</li>
+                  </ul>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                  <h4 class="font-medium text-amber-800 mb-3 flex items-center">
+                    <i class="fas fa-bell mr-2"></i>
+                    Notificaciones Automatizadas
+                  </h4>
+                  <p class="text-sm text-amber-700 mb-3">
+                    Configura nodos de notificación al final del flujo de trabajo:
+                  </p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-amber-600">
+                    <div>• Correo electrónico</div>
+                    <div>• Slack/Teams</div>
+                    <div>• Telegram</div>
+                    <div>• Webhook</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Advanced Monitoring -->
+              <div class="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+                <h4 class="font-semibold text-indigo-800 mb-3 flex items-center">
+                  <i class="fas fa-chart-line mr-2"></i>
+                  Monitoreo Avanzado
+                </h4>
+                <p class="text-sm text-indigo-700 mb-3">
+                  Para entornos de producción, habilita métricas de rendimiento:
+                </p>
+                <div class="code-block p-3 text-sm">
+                  <pre><code>N8N_METRICS=true</code></pre>
+                </div>
+                <p class="text-xs text-indigo-600 mt-2">
+                  Permite integración con sistemas como Prometheus para monitorización profesional.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="mb-16">
+          <div class="bg-gradient-to-r from-teal-50 to-blue-50 rounded-xl p-8 border border-teal-200">
+            <h2 class="serif text-3xl font-bold text-gray-900 mb-6">Implementación Profesional</h2>
+            <p class="text-lg text-gray-700 mb-6">
+              La automatización completa del proceso de creación y publicación de videos de YouTube con n8n en Docker para Windows representa un sistema sofisticado que integra múltiples tecnologías y servicios. La clave del éxito radica en la configuración cuidadosa de cada componente, la gestión adecuada de credenciales y la implementación de mecanismos robustos de monitoreo y manejo de errores.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="bg-teal-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                  <i class="fas fa-rocket text-xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Escalabilidad</h3>
+                <p class="text-sm text-gray-600">Diseñado para manejar múltiples videos simultáneamente con gestión profesional de recursos</p>
+              </div>
+
+              <div class="text-center">
+                <div class="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                  <i class="fas fa-shield-alt text-xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Seguridad</h3>
+                <p class="text-sm text-gray-600">Autenticación OAuth2 y almacenamiento seguro de credenciales con encriptación</p>
+              </div>
+
+              <div class="text-center">
+                <div class="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                  <i class="fas fa-cogs text-xl"></i>
+                </div>
+                <h3 class="font-semibold text-gray-900 mb-2">Flexibilidad</h3>
+                <p class="text-sm text-gray-600">Arquitectura modular que permite personalización y adaptación a diversos flujos de trabajo</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <script>
+        // Mobile TOC Toggle
+        function toggleTOC() {
+            const toc = document.querySelector('.toc-fixed');
+            toc.classList.toggle('open');
+        }
+        
+        // Close TOC when clicking outside
+        document.addEventListener('click', function(event) {
+            const toc = document.querySelector('.toc-fixed');
+            const hamburgerButton = document.querySelector('button[onclick="toggleTOC()"]');
+            
+            // Only close if the TOC is open (on small screens) and the click is outside the TOC and not on the hamburger button
+            if (window.innerWidth <= 1024 && toc.classList.contains('open') && 
+                !toc.contains(event.target) && 
+                event.target !== hamburgerButton && 
+                !hamburgerButton.contains(event.target)) {
+                toc.classList.remove('open');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile TOC after clicking
+                if (window.innerWidth <= 1024) {
+                    document.querySelector('.toc-fixed').classList.remove('open');
+                }
+            });
+        });
+        
+        // Copy to clipboard functionality
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                // Show feedback
+                const button = event.target.closest('button');
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                }, 2000);
+            });
+        }
+        
+        // Highlight active section in TOC
+        function updateActiveSection() {
+            const sections = document.querySelectorAll('section[id]');
+            const tocLinks = document.querySelectorAll('.toc-fixed a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            tocLinks.forEach(link => {
+                link.classList.remove('text-teal-600', 'font-semibold');
+                link.classList.add('text-gray-600');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-gray-600');
+                    link.classList.add('text-teal-600', 'font-semibold');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveSection);
+        window.addEventListener('load', updateActiveSection);
+        
+        // Close TOC when resizing to large screen
+        window.addEventListener('resize', function() {
+            const toc = document.querySelector('.toc-fixed');
+            if (window.innerWidth > 1024 && toc.classList.contains('open')) {
+                toc.classList.remove('open');
+            }
+        });
+    </script>
+  
+
+</body></html>

@@ -1,0 +1,204 @@
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #302626;
+    color: #171717;
+}
+
+
+
+
+p {
+    font-size: 1.2em;
+    color: #666;
+    line-height: 1.5;
+}
+div.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #822525;
+    border-radius: 300px;
+    box-shadow: 0 20px 10px rgba(182, 150, 150, 0.1);
+}
+div.container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    filter: blur(1px);
+}
+div.socrates {
+    width: 80%;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #1e1c1c;
+    border-radius: 300px;
+    box-shadow: 0 10px 10px rgba(235, 3, 3, 0.1);
+   
+}
+div.socrates:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    filter: blur(1px);
+}
+div.platon {
+    width: 80%;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #493c3c;
+    border-radius: 300px;
+    box-shadow: 0 10px 10px rgba(245, 4, 4, 0.1);
+}
+div.platon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    filter: blur(1px);
+}
+div.klk {
+    width: 60%;
+    margin: 100px auto;
+    padding: 50px;
+    background-color: #1e1c1c;
+    border-radius: 800px;
+    box-shadow: 0 30px 10px rgba(176, 121, 121, 0.1);
+}
+div.klk:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    filter: blur(1px);
+}
+div.joya {
+    width: 100%;
+    margin: 0px auto;
+    padding: 10px;
+    background-color: #493c3c;
+    border-radius: 800px;
+    box-shadow: 0 10px 10px rgba(232, 227, 227, 0.1);
+}
+div.joya:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    filter: blur(1px);
+}
+div.joya2 {
+    width: 100%;
+    margin: 30px auto;
+    padding: 0px;
+    background-color: #493c3c;
+    border-radius: 500px;
+    box-shadow: 0 10px 10px rgba(227, 5, 5, 0.1);
+}
+div.joya2:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    filter: blur(1px);
+}
+.foto {
+  width: 300px;
+  height: 300px;
+  border-radius: 60px;
+  box-shadow: 0 8px 16px rgba(127, 9, 9, 0.3);
+  margin: 10px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.marco1 {
+  border: 3px solid #ff6666;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.foto1:hover {
+  transform: rotate(5deg);
+  transition: 0.3s;
+}
+
+.foto:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.imagenes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  text-align: center;
+}
+
+[class^="imagen"] {
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(218, 209, 209, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Imagen individual con estilos únicos */
+.imagen1 {
+  border-color: #e70b0b;
+}
+.imagen1:hover img {
+  transform: rotate(-6deg);
+}
+
+.imagen2 {
+  border-color: #1f4355;
+}
+.imagen2:hover img {
+  transform: scale(1.1);
+}
+
+.imagen3 {
+  border-color: #99ff99;
+}
+.imagen3:hover img {
+  filter: grayscale(100%);
+}
+
+.imagen4 {
+  border-color: #ffd700;
+}
+.imagen4:hover img {
+  transform: translateY(-10px);
+}
+
+.imagen5 {
+  border-color: #ffb6c1;
+}
+.imagen5:hover img {
+  filter: sepia(80%);
+}
+
+.imagen7 {
+  border-color: #00bcd4;
+}
+.imagen7:hover img {
+  transform: rotate(3deg) scale(1.05);
+  opacity: 0.9;
+  transform: scale(1.1) rotate(-3deg);
+  filter: blur(2px);
+}
+
+/* Estilo base para todas las imágenes */
+.foto {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  
+}

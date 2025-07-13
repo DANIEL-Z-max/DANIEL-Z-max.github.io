@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Transformaciones 3D en CSS</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .box {
+      width: 300px;
+      height: 300px;
+      background-color: #3498db;
+      margin: 20px;
+      transition: transform 0.9s ease;
+      transform-style: preserve-3d;
+      border-radius: 10px;
+      line-height: 120px;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+
+    .rotate-x:hover {
+      transform: rotateX(180deg);
+    }
+
+    .rotate-y:hover {
+      transform: rotateY(180deg);
+    }
+
+    .rotate-z:hover {
+      transform: rotateZ(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Transformaciones 3D con CSS</h1>
+  <p>Pasa el cursor por encima de cada caja para ver el efecto</p>
+
+  <div class="container">
+    <div class="box rotate-x">rotateX()</div>
+    <div class="box rotate-y">rotateY()</div>
+    <div class="box rotate-z">rotateZ()</div>
+  </div>
+
+</body>
+</html>
