@@ -1,0 +1,7 @@
+
+{
+    "codegeex.completions.enable": true,
+    "codegeex.chat.enable": true,
+    "codegeex.language": "español",
+    "codegeex.model": "codegeex-13b"
+}

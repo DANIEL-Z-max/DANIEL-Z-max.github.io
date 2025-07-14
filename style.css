@@ -1,0 +1,853 @@
+/* Variables globales */
+:root {
+    /* Tema oscuro (default) */
+    --primary-color: #ff3c00;
+    --background: #1a1a1a;
+    --text: #fff;
+    --card-bg: rgba(51, 51, 51, 0.8);
+    --card-hover: rgba(68, 68, 68, 0.85);
+    --modal-bg: rgba(28, 28, 28, 0.95);
+    --input-bg: rgba(255, 255, 255, 0.1);
+    --transition-speed: 0.3s;
+}
+
+/* Tema claro */
+:root[data-theme="light"] {
+    --primary-color: #ff3c00;
+    --background: #f5f5f5;
+    --text: #333;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-hover: rgba(255, 255, 255, 0.95);
+    --modal-bg: rgba(255, 255, 255, 0.95);
+    --input-bg: rgba(0, 0, 0, 0.05);
+}
+
+/* Transición suave al cambiar tema */
+body {
+    transition: background-color var(--transition-speed),
+                color var(--transition-speed);
+}
+
+/* Reset y estilos base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.nav-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.nav-btn:hover {
+    background: var(--card-hover);
+    transform: translateY(-2px);
+}
+
+.theme-switch {
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.theme-switch i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.theme-switch:hover i {
+    transform: rotate(20deg);
+}
+
+/* Tooltip para el botón de tema */
+.theme-switch::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-bg);
+    color: var(--text);
+    padding: 0.3rem 0.8rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.theme-switch:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: -35px;
+}
+
+/* Sección de búsqueda */
+.search-section {
+    padding: 2rem 5%;
+    margin-top: 80px;
+}
+
+.search-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-box {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.input-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: none;
+    background: transparent;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+}
+
+#searchInput:focus::placeholder {
+    opacity: 0.7;
+    transform: translateX(5px);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within .search-icon {
+    color: var(--text-light);
+    transform: scale(1.1);
+}
+
+.search-button {
+    position: relative;
+    padding: 0.8rem 2rem;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.button-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.button-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent 25%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 75%
+    );
+    background-size: 200% 200%;
+    animation: shimmer 2s infinite linear;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.search-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 60, 0, 0.4);
+}
+
+.search-button:hover .button-effect {
+    opacity: 1;
+}
+
+.search-button:active {
+    transform: translateY(1px);
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Efectos de hover y focus */
+.search-box:hover {
+    background: rgba(255, 255, 255, 0.13);
+}
+
+#searchInput:focus {
+    background: transparent;
+}
+
+/* Filtros */
+.filters {
+    padding: 2rem 5%;
+    margin-bottom: 2rem;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.filter-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.filter-group:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.filter-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.filter-icon i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.filter-select {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    z-index: 1;
+}
+
+.filter-select option,
+.filter-select optgroup {
+    background-color: #2a2a2a;
+    color: white;
+    padding: 8px;
+}
+
+.filter-select optgroup {
+    font-weight: bold;
+    background-color: #1a1a1a;
+}
+
+.filter-select option {
+    padding: 10px;
+    margin: 2px;
+    border-radius: 4px;
+}
+
+.filter-select option:checked {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Estilos específicos para el filtro de género */
+.genre-filter .filter-select {
+    padding-right: 2rem;
+}
+
+.genre-filter .filter-icon {
+    background: #ff4081;
+}
+
+/* Estilos específicos para el filtro de calificación */
+.rating-filter .filter-icon {
+    background: #ffd700;
+}
+
+.rating-filter .filter-select option {
+    padding: 10px;
+    margin: 5px;
+}
+
+/* Animación hover para los iconos */
+.filter-icon {
+    transition: transform 0.3s ease;
+}
+
+.filter-group:hover .filter-icon {
+    transform: scale(1.1);
+}
+
+/* Estilos para los selects personalizados */
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select::after {
+    content: '▼';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    pointer-events: none;
+}
+
+/* Efecto de brillo en hover */
+.filter-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 12px;
+}
+
+.filter-group:hover::before {
+    opacity: 1;
+}
+
+/* Grid de películas */
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 2rem 5%;
+}
+
+.movie-card {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform var(--transition-speed);
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: translateY(-10px);
+}
+
+.movie-image {
+    position: relative;
+    padding-top: 150%;
+}
+
+.movie-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.8));
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+}
+
+.movie-card:hover .movie-overlay {
+    opacity: 1;
+}
+
+.movie-info {
+    padding: 1rem;
+}
+
+.movie-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.movie-year {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.movie-rating {
+    color: #ffd700;
+}
+
+/* Estilos para favoritos */
+.movie-card.favorite::before {
+    content: '❤️';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    z-index: 10;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+    animation: heartBeat 1s;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.nav-btn.active {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 60, 0, 0.3);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1001;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Para un scroll suave en iOS */
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    margin: 2rem auto;
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    background: rgba(28, 28, 28, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    max-height: 90vh;
+    overflow-y: auto;
+    scrollbar-width: thin; /* Para Firefox */
+    scrollbar-color: var(--primary-color) rgba(0, 0, 0, 0.2); /* Para Firefox */
+}
+
+/* Estilizando la barra de desplazamiento para Chrome/Safari */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background-color: #ff5500;
+}
+
+.modal-body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    overflow: hidden;
+}
+
+.modal-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-trailer, .btn-favorite {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition-speed);
+}
+
+.btn-trailer {
+    background-color: #ff0000;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-trailer:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+}
+
+.btn-trailer i {
+    font-size: 1.2em;
+}
+
+.btn-favorite {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    margin-top: 4rem;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+.social-links {
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    transition: color var(--transition-speed);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Estilos para notificaciones mejoradas */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.notification i {
+    font-size: 1.2rem;
+}
+
+.notification.success {
+    background: rgba(76, 175, 80, 0.9);
+}
+
+.notification.error {
+    background: rgba(244, 67, 54, 0.9);
+}
+
+.notification.warning {
+    background: rgba(255, 152, 0, 0.9);
+}
+
+.notification.info {
+    background: rgba(33, 150, 243, 0.9);
+}
+
+/* Estilos para el loader y mensajes */
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    width: 100%;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--primary-color);
+}
+
+.loader i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.no-results, .error-message, .no-favorites {
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    color: var(--text-light);
+}
+
+.error-message {
+    border: 1px solid rgba(255, 60, 0, 0.3);
+    color: #ff3c00;
+}
+
+/* Mejoras en los resultados de búsqueda */
+.movies-grid {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Indicador de carga en el botón de búsqueda */
+.search-button.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.search-button.loading .button-content {
+    visibility: hidden;
+}
+
+.search-button.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Mejoras responsive */
+@media (max-width: 768px) {
+    .search-box {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .search-button {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    #searchInput {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .search-icon {
+        left: 50%;
+        transform: translateX(-50%);
+        top: -2rem;
+    }
+
+    .button-text {
+        flex: 1;
+        text-align: center;
+    }
+
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .filter-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+
+    .nav-controls {
+        display: flex;
+        gap: 10px;
+    }
+
+    .nav-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .favorites-counter {
+        width: 16px;
+        height: 16px;
+        font-size: 0.7rem;
+    }
+
+    .modal-content {
+        margin: 1rem;
+        padding: 1.5rem;
+        max-height: 85vh;
+    }
+
+    .modal-body {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animación de escritura */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+#searchInput:focus::after {
+    content: '|';
+    margin-left: 2px;
+    animation: blink 1s infinite;
+}

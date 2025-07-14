@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Películas</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>MovieFinder <i class="fas fa-film"></i></h1>
+            </div>
+            <div class="nav-controls">
+                <button id="showFavorites" class="nav-btn">
+                    <i class="fas fa-heart"></i>
+                    <span>Favoritos</span>
+                </button>
+                <button class="theme-switch nav-btn" title="Cambiar tema claro/oscuro">
+                    <i class="fas fa-moon"></i>
+                    <span>Tema</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <div class="input-wrapper">
+                        <input type="text" 
+                               id="searchInput" 
+                               placeholder="Encuentra tu película favorita..." 
+                               autocomplete="off">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <button id="searchButton" class="search-button">
+                        <span class="button-content">
+                            <i class="fas fa-search"></i>
+                            <span class="button-text">Buscar</span>
+                        </span>
+                        <span class="button-effect"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="filters">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <div class="filter-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <select id="yearFilter" class="filter-select">
+                        <option value="">Año de Lanzamiento</option>
+                        <option value="2024">2024 - Estrenos</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="classic">Clásicas (Pre-2018)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group genre-filter">
+                    <div class="filter-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="custom-select">
+                        <select id="genreFilter" class="filter-select">
+                            <option value="">Explora Géneros</option>
+                            <optgroup label="Populares">
+                                <option value="Action">🎬 Acción</option>
+                                <option value="Comedy">😄 Comedia</option>
+                                <option value="Drama">🎭 Drama</option>
+                                <option value="Horror">👻 Terror</option>
+                                <option value="Science Fiction">🚀 Ciencia Ficción</option>
+                            </optgroup>
+                            <optgroup label="Más Géneros">
+                                <option value="Adventure">🗺️ Aventura</option>
+                                <option value="Animation">🎨 Animación</option>
+                                <option value="Crime">🔍 Crimen</option>
+                                <option value="Documentary">📚 Documental</option>
+                                <option value="Family">👨‍👩‍👧‍👦 Familiar</option>
+                                <option value="Fantasy">🧙‍♂️ Fantasía</option>
+                                <option value="Romance">💝 Romance</option>
+                                <option value="Thriller">😰 Thriller</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group rating-filter">
+                    <div class="filter-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="rating-select">
+                        <select id="ratingFilter" class="filter-select">
+                            <option value="">Calificación IMDB</option>
+                            <option value="9">⭐⭐⭐⭐⭐ 9+ Obras Maestras</option>
+                            <option value="8">⭐⭐⭐⭐ 8+ Excelentes</option>
+                            <option value="7">⭐⭐⭐ 7+ Muy Buenas</option>
+                            <option value="6">⭐⭐ 6+ Buenas</option>
+                            <option value="all">Todas las Calificaciones</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="movies-grid" id="moviesContainer">
+            <!-- Las películas se cargarán dinámicamente aquí -->
+        </section>
+
+        <!-- Template para las tarjetas de película -->
+        <template id="movie-template">
+            <div class="movie-card">
+                <div class="movie-image">
+                    <img src="" alt="">
+                    <div class="movie-overlay">
+                        <div class="movie-rating">
+                            <i class="fas fa-star"></i>
+                            <span></span>
+                        </div>
+                        <div class="movie-actions">
+                            <button class="btn-details">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-info">
+                    <h3 class="movie-title"></h3>
+                    <p class="movie-year"></p>
+                    <div class="movie-genres"></div>
+                </div>
+            </div>
+        </template>
+    </main>
+
+    <!-- Modal para detalles de película -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img src="" alt="" id="modalImage">
+                    <div class="modal-rating">
+                        <i class="fas fa-star"></i>
+                        <span id="modalRating"></span>
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <div class="modal-metadata">
+                        <span id="modalYear"></span>
+                        <span class="separator">•</span>
+                        <span id="modalDuration"></span>
+                        <span class="separator">•</span>
+                        <span id="modalGenres"></span>
+                    </div>
+                    <div class="modal-overview">
+                        <h3>Sinopsis</h3>
+                        <p id="modalOverview"></p>
+                    </div>
+                    <div class="modal-actions">
+                        <button id="watchTrailer" class="btn-trailer">
+                            <i class="fas fa-play"></i> Ver Trailer
+                        </button>
+                        <button id="addFavorite" class="btn-favorite">
+                            <i class="fas fa-heart"></i> 
+                            <span>Agregar a Favoritos</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Grupo -->
+    <div id="groupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Crear Grupo</h2>
+            <form id="groupForm">
+                <input type="text" id="groupName" placeholder="Nombre del grupo" required>
+                <textarea id="groupDescription" placeholder="Descripción del grupo" required></textarea>
+                <button type="submit" class="btn-primary">Crear Grupo</button>
+            </form>
+            <div id="groupsList"></div>
+        </div>
+    </div>
+
+    <!-- Modal de Retos -->
+    <div id="challengeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Crear Reto</h2>
+            <form id="challengeForm">
+                <select id="groupSelect" required>
+                    <option value="">Seleccionar grupo</option>
+                </select>
+                <input type="date" id="challengeDeadline" required>
+                <button type="submit" class="btn-primary">Crear Reto</button>
+            </form>
+            <div id="challengesList"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>Creado con <i class="fas fa-heart"></i> por Daniel</p>
+            <div class="social-links">
+                <a href="https://github.com/DANIEL-Z-max" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="sw.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
